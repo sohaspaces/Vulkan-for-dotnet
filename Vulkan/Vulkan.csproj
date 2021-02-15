@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>VulkanForDotnet</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Copyright>Copyright (c) 2021 Soha Moon</Copyright>
+    <Description>A Khronos Vulkan API wrapper for dotnet 5.0+ environment, without any abstraction but with only just the Vulkan API itself.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +21,10 @@
     <Compile Remove="Structs - 복사\**" />
     <EmbeddedResource Remove="Structs - 복사\**" />
     <None Remove="Structs - 복사\**" />
+    <None Include="../LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
