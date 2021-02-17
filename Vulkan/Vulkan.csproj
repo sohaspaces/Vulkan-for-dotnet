@@ -7,6 +7,9 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Copyright>Copyright (c) 2021 Soha Moon</Copyright>
     <Description>A Khronos Vulkan API wrapper for dotnet 5.0+ environment, without any abstraction but with only just the Vulkan API itself.</Description>
+    <RepositoryUrl>https://github.com/sohaspaces/Vulkan-for-dotnet.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
