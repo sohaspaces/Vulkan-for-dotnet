@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Nvidia.Experimental
 {
+    [System.Flags]
     public enum VkIndirectCommandsLayoutUsageFlags
     {
         UnorderedSequences = 0x00000001,

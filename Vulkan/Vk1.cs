@@ -10,7 +10,7 @@ using Vulkan.Structs.Extension;
 using Vulkan.Structs.Khronos;
 namespace Vulkan
 {
-    public static unsafe class VkExt
+    public static unsafe partial class VkExt
     {
         [DllImport("vulkan-1")] private static extern VkResult vkAcquireFullScreenExclusiveModeEXT(VkDevice device, VkSwapchain swapchain);
         public static void AcquireFullScreenExclusiveMode(VkDevice device, VkSwapchain swapchain) => vkAcquireFullScreenExclusiveModeEXT(device, swapchain).AssertSuccess(nameof(vkAcquireFullScreenExclusiveModeEXT));
@@ -75,7 +75,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkGetCalibratedTimestampsEXT(VkDevice device, uint timestampCount, VkCalibratedTimestampInfo* timestampInfos, ulong* timestamps, ulong* maxDeviation);
         public static void GetCalibratedTimestamps(VkDevice device, uint timestampCount, VkCalibratedTimestampInfo* timestampInfos, ulong* timestamps, ulong* maxDeviation) => vkGetCalibratedTimestampsEXT(device, timestampCount, timestampInfos, timestamps, maxDeviation).AssertSuccess(nameof(vkGetCalibratedTimestampsEXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDeviceGroupSurfacePresentModes2EXT(VkDevice device, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, VkDeviceGroupPresentModeFlags* modes);
-        public static VkResult GetDeviceGroupSurfacePresentModes2(VkDevice device, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, VkDeviceGroupPresentModeFlags* modes) => vkGetDeviceGroupSurfacePresentModes2EXT(device, surfaceInfo, modes);
+        public static void GetDeviceGroupSurfacePresentModes2(VkDevice device, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, VkDeviceGroupPresentModeFlags* modes) => vkGetDeviceGroupSurfacePresentModes2EXT(device, surfaceInfo, modes).AssertSuccess(nameof(vkGetDeviceGroupSurfacePresentModes2EXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetImageDrmFormatModifierPropertiesEXT(VkDevice device, VkImage image, VkImageDrmFormatModifierProperties* properties);
         public static void GetImageDrmFormatModifierProperties(VkDevice device, VkImage image, VkImageDrmFormatModifierProperties* properties) => vkGetImageDrmFormatModifierPropertiesEXT(device, image, properties).AssertSuccess(nameof(vkGetImageDrmFormatModifierPropertiesEXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryHostPointerPropertiesEXT(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, void* hostPointer, VkMemoryHostPointerProperties* memoryHostPointerProperties);
@@ -85,9 +85,9 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern void vkGetPhysicalDeviceMultisamplePropertiesEXT(VkPhysicalDevice physicalDevice, VkSampleCountFlags samples, VkMultisampleProperties* multisampleProperties);
         public static void GetPhysicalDeviceMultisampleProperties(VkPhysicalDevice physicalDevice, VkSampleCountFlags samples, VkMultisampleProperties* multisampleProperties) => vkGetPhysicalDeviceMultisamplePropertiesEXT(physicalDevice, samples, multisampleProperties);
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceCapabilities2EXT(VkPhysicalDevice physicalDevice, VkSurface surface, Structs.Extension.VkSurfaceCapabilities2* surfaceCapabilities);
-        public static VkResult GetPhysicalDeviceSurfaceCapabilities2(VkPhysicalDevice physicalDevice, VkSurface surface, Structs.Extension.VkSurfaceCapabilities2* surfaceCapabilities) => vkGetPhysicalDeviceSurfaceCapabilities2EXT(physicalDevice, surface, surfaceCapabilities);
+        public static void GetPhysicalDeviceSurfaceCapabilities2(VkPhysicalDevice physicalDevice, VkSurface surface, Structs.Extension.VkSurfaceCapabilities2* surfaceCapabilities) => vkGetPhysicalDeviceSurfaceCapabilities2EXT(physicalDevice, surface, surfaceCapabilities).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceCapabilities2EXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfacePresentModes2EXT(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* presentModeCount, VkPresentMode* presentModes);
-        public static VkResult GetPhysicalDeviceSurfacePresentModes2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* presentModeCount, VkPresentMode* presentModes) => vkGetPhysicalDeviceSurfacePresentModes2EXT(physicalDevice, surfaceInfo, presentModeCount, presentModes);
+        public static void GetPhysicalDeviceSurfacePresentModes2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* presentModeCount, VkPresentMode* presentModes) => vkGetPhysicalDeviceSurfacePresentModes2EXT(physicalDevice, surfaceInfo, presentModeCount, presentModes).AssertSuccess(nameof(vkGetPhysicalDeviceSurfacePresentModes2EXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceToolPropertiesEXT(VkPhysicalDevice physicalDevice, uint* toolCount, VkPhysicalDeviceToolProperties* toolProperties);
         public static void GetPhysicalDeviceToolProperties(VkPhysicalDevice physicalDevice, uint* toolCount, VkPhysicalDeviceToolProperties* toolProperties) => vkGetPhysicalDeviceToolPropertiesEXT(physicalDevice, toolCount, toolProperties).AssertSuccess(nameof(vkGetPhysicalDeviceToolPropertiesEXT));
         [DllImport("vulkan-1")] private static extern VkResult vkGetSwapchainCounterEXT(VkDevice device, VkSwapchain swapchain, VkSurfaceCounterFlags counter, ulong* counterValue);
@@ -118,5 +118,10 @@ namespace Vulkan
         public static void SetHdrMetadata(VkDevice device, uint swapchainCount, VkSwapchain* swapchains, VkHdrMetadata* metadata) => vkSetHdrMetadataEXT(device, swapchainCount, swapchains, metadata);
         [DllImport("vulkan-1")] private static extern void vkSubmitDebugUtilsMessageEXT(VkInstance instance, VkDebugUtilsMessageSeverityFlags messageSeverity, VkDebugUtilsMessageTypeFlags messageTypes, VkDebugUtilsMessengerCallbackData* callbackData);
         public static void SubmitDebugUtilsMessage(VkInstance instance, VkDebugUtilsMessageSeverityFlags messageSeverity, VkDebugUtilsMessageTypeFlags messageTypes, VkDebugUtilsMessengerCallbackData* callbackData) => vkSubmitDebugUtilsMessageEXT(instance, messageSeverity, messageTypes, callbackData);
+
+
+        //paste here
+
+
     }
 }

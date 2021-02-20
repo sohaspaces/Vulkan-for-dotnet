@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkCullModeFlags
     {
         None = 0,

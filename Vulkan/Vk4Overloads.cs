@@ -1,0 +1,48 @@
+using System.Runtime.InteropServices;
+using Vulkan.Enums;
+using Vulkan.Handles;
+using Vulkan.Handles.Khronos;
+using Vulkan.Structs;
+using Vulkan.Structs.Google;
+namespace Vulkan
+{
+    public static unsafe partial class VkGoogle
+    {
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, ref VkAllocationCallbacks allocator, ref VkSurface surface);
+        public static void CreateImagePipeSurface(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, ref VkAllocationCallbacks allocator, ref VkSurface surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, ref createInfo, ref allocator, ref surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, ref VkAllocationCallbacks allocator, ref VkSurface surface);
+        public static void CreateImagePipeSurface(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, ref VkAllocationCallbacks allocator, ref VkSurface surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, createInfo, ref allocator, ref surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, VkAllocationCallbacks[] allocator, ref VkSurface surface);
+        public static void CreateImagePipeSurface(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, VkAllocationCallbacks[] allocator, ref VkSurface surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, ref createInfo, allocator, ref surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, VkAllocationCallbacks[] allocator, ref VkSurface surface);
+        public static void CreateImagePipeSurface(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, VkAllocationCallbacks[] allocator, ref VkSurface surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, createInfo, allocator, ref surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, ref VkAllocationCallbacks allocator, VkSurface[] surface);
+        public static void CreateImagePipeSurface(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, ref VkAllocationCallbacks allocator, VkSurface[] surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, ref createInfo, ref allocator, surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, ref VkAllocationCallbacks allocator, VkSurface[] surface);
+        public static void CreateImagePipeSurface(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, ref VkAllocationCallbacks allocator, VkSurface[] surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, createInfo, ref allocator, surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, VkAllocationCallbacks[] allocator, VkSurface[] surface);
+        public static void CreateImagePipeSurface(VkInstance instance, ref VkImagePipeSurfaceCreateInfo createInfo, VkAllocationCallbacks[] allocator, VkSurface[] surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, ref createInfo, allocator, surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, VkAllocationCallbacks[] allocator, VkSurface[] surface);
+        public static void CreateImagePipeSurface(VkInstance instance, VkImagePipeSurfaceCreateInfo[] createInfo, VkAllocationCallbacks[] allocator, VkSurface[] surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, createInfo, allocator, surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetAndroidHardwareBufferPropertiesANDROID(VkDevice device, nint buffer, ref VkAndroidHardwareBufferProperties properties);
+        public static void GetAndroidHardwareBufferProperties(VkDevice device, nint buffer, ref VkAndroidHardwareBufferProperties properties) => vkGetAndroidHardwareBufferPropertiesANDROID(device, buffer, ref properties).AssertSuccess(nameof(vkGetAndroidHardwareBufferPropertiesANDROID));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetAndroidHardwareBufferPropertiesANDROID(VkDevice device, nint buffer, VkAndroidHardwareBufferProperties[] properties);
+        public static void GetAndroidHardwareBufferProperties(VkDevice device, nint buffer, VkAndroidHardwareBufferProperties[] properties) => vkGetAndroidHardwareBufferPropertiesANDROID(device, buffer, properties).AssertSuccess(nameof(vkGetAndroidHardwareBufferPropertiesANDROID));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryAndroidHardwareBufferANDROID(VkDevice device, ref VkMemoryGetAndroidHardwareBufferInfo info, nint buffer);
+        public static void GetMemoryAndroidHardwareBuffer(VkDevice device, ref VkMemoryGetAndroidHardwareBufferInfo info, nint buffer) => vkGetMemoryAndroidHardwareBufferANDROID(device, ref info, buffer).AssertSuccess(nameof(vkGetMemoryAndroidHardwareBufferANDROID));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryAndroidHardwareBufferANDROID(VkDevice device, VkMemoryGetAndroidHardwareBufferInfo[] info, nint buffer);
+        public static void GetMemoryAndroidHardwareBuffer(VkDevice device, VkMemoryGetAndroidHardwareBufferInfo[] info, nint buffer) => vkGetMemoryAndroidHardwareBufferANDROID(device, info, buffer).AssertSuccess(nameof(vkGetMemoryAndroidHardwareBufferANDROID));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetPastPresentationTimingGOOGLE(VkDevice device, VkSwapchain swapchain, ref uint presentationTimingCount, ref VkPastPresentationTiming presentationTimings);
+        public static void GetPastPresentationTiming(VkDevice device, VkSwapchain swapchain, ref uint presentationTimingCount, ref VkPastPresentationTiming presentationTimings) => vkGetPastPresentationTimingGOOGLE(device, swapchain, ref presentationTimingCount, ref presentationTimings).AssertSuccess(nameof(vkGetPastPresentationTimingGOOGLE));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetPastPresentationTimingGOOGLE(VkDevice device, VkSwapchain swapchain, uint[] presentationTimingCount, ref VkPastPresentationTiming presentationTimings);
+        public static void GetPastPresentationTiming(VkDevice device, VkSwapchain swapchain, uint[] presentationTimingCount, ref VkPastPresentationTiming presentationTimings) => vkGetPastPresentationTimingGOOGLE(device, swapchain, presentationTimingCount, ref presentationTimings).AssertSuccess(nameof(vkGetPastPresentationTimingGOOGLE));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetPastPresentationTimingGOOGLE(VkDevice device, VkSwapchain swapchain, ref uint presentationTimingCount, VkPastPresentationTiming[] presentationTimings);
+        public static void GetPastPresentationTiming(VkDevice device, VkSwapchain swapchain, ref uint presentationTimingCount, VkPastPresentationTiming[] presentationTimings) => vkGetPastPresentationTimingGOOGLE(device, swapchain, ref presentationTimingCount, presentationTimings).AssertSuccess(nameof(vkGetPastPresentationTimingGOOGLE));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetPastPresentationTimingGOOGLE(VkDevice device, VkSwapchain swapchain, uint[] presentationTimingCount, VkPastPresentationTiming[] presentationTimings);
+        public static void GetPastPresentationTiming(VkDevice device, VkSwapchain swapchain, uint[] presentationTimingCount, VkPastPresentationTiming[] presentationTimings) => vkGetPastPresentationTimingGOOGLE(device, swapchain, presentationTimingCount, presentationTimings).AssertSuccess(nameof(vkGetPastPresentationTimingGOOGLE));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetRefreshCycleDurationGOOGLE(VkDevice device, VkSwapchain swapchain, ref VkRefreshCycleDuration displayTimingProperties);
+        public static void GetRefreshCycleDuration(VkDevice device, VkSwapchain swapchain, ref VkRefreshCycleDuration displayTimingProperties) => vkGetRefreshCycleDurationGOOGLE(device, swapchain, ref displayTimingProperties).AssertSuccess(nameof(vkGetRefreshCycleDurationGOOGLE));
+        [DllImport("vulkan-1")] private static extern VkResult vkGetRefreshCycleDurationGOOGLE(VkDevice device, VkSwapchain swapchain, VkRefreshCycleDuration[] displayTimingProperties);
+        public static void GetRefreshCycleDuration(VkDevice device, VkSwapchain swapchain, VkRefreshCycleDuration[] displayTimingProperties) => vkGetRefreshCycleDurationGOOGLE(device, swapchain, displayTimingProperties).AssertSuccess(nameof(vkGetRefreshCycleDurationGOOGLE));
+    }
+}

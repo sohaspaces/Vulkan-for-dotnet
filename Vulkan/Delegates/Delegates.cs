@@ -62,6 +62,7 @@ namespace Vulkan.Delegates
         public unsafe delegate VkBool32 VkDebugUtilsMessengerCallback
         (
             VkDebugUtilsMessageSeverityFlags severity,
+            VkDebugUtilsMessageTypeFlags types,
             VkDebugUtilsMessengerCallbackData* callbackData,
             void* userData
         );

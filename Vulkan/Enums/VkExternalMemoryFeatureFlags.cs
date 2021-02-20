@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkExternalMemoryFeatureFlags
     {
         DedicatedOnly = 0x00000001,

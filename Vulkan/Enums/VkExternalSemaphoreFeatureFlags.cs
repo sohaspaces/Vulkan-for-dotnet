@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkExternalSemaphoreFeatureFlags
     {
         Exportable = 0x00000001,

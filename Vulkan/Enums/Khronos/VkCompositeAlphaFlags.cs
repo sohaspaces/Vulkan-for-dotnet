@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Khronos
 {
+    [System.Flags]
     public enum VkCompositeAlphaFlags
     {
         Opaque = 0x00000001,

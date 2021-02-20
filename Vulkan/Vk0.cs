@@ -3,9 +3,10 @@ using Vulkan.Delegates;
 using Vulkan.Enums;
 using Vulkan.Handles;
 using Vulkan.Structs;
+
 namespace Vulkan
 {
-    public static unsafe class Vk
+    public static unsafe partial class Vk
     {
         [DllImport("vulkan-1")] private static extern VkResult vkAllocateCommandBuffers(VkDevice device, VkCommandBufferAllocateInfo* allocateInfo, VkCommandBuffer* commandBuffers);
         public static void AllocateCommandBuffers(VkDevice device, VkCommandBufferAllocateInfo* allocateInfo, VkCommandBuffer* commandBuffers) => vkAllocateCommandBuffers(device, allocateInfo, commandBuffers).AssertSuccess(nameof(vkAllocateCommandBuffers));
@@ -142,7 +143,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkCreateDevice(VkPhysicalDevice physicalDevice, VkDeviceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkDevice* device);
         public static void CreateDevice(VkPhysicalDevice physicalDevice, VkDeviceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkDevice* device) => vkCreateDevice(physicalDevice, createInfo, allocator, device).AssertSuccess(nameof(vkCreateDevice));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateEvent(VkDevice device, VkEventCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkEvent* @event);
-        public static VkResult CreateEvent(VkDevice device, VkEventCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkEvent* @event) => vkCreateEvent(device, createInfo, allocator, @event);
+        public static void CreateEvent(VkDevice device, VkEventCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkEvent* @event) => vkCreateEvent(device, createInfo, allocator, @event).AssertSuccess(nameof(vkCreateDevice));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateFence(VkDevice device, VkFenceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkFence* fence);
         public static void CreateFence(VkDevice device, VkFenceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkFence* fence) => vkCreateFence(device, createInfo, allocator, fence).AssertSuccess(nameof(vkCreateFence));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateFramebuffer(VkDevice device, VkFramebufferCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkFramebuffer* framebuffer);
@@ -164,7 +165,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkCreateRenderPass(VkDevice device, VkRenderPassCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkRenderPass* renderPass);
         public static void CreateRenderPass(VkDevice device, VkRenderPassCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkRenderPass* renderPass) => vkCreateRenderPass(device, createInfo, allocator, renderPass).AssertSuccess(nameof(vkCreateRenderPass));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateRenderPass2(VkDevice device, VkRenderPassCreateInfo2* createInfo, VkAllocationCallbacks* allocator, VkRenderPass* renderPass);
-        public static VkResult CreateRenderPass2(VkDevice device, VkRenderPassCreateInfo2* createInfo, VkAllocationCallbacks* allocator, VkRenderPass* renderPass) => vkCreateRenderPass2(device, createInfo, allocator, renderPass);
+        public static void CreateRenderPass2(VkDevice device, VkRenderPassCreateInfo2* createInfo, VkAllocationCallbacks* allocator, VkRenderPass* renderPass) => vkCreateRenderPass2(device, createInfo, allocator, renderPass).AssertSuccess(nameof(vkCreateRenderPass2));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateSampler(VkDevice device, VkSamplerCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSampler* sampler);
         public static void CreateSampler(VkDevice device, VkSamplerCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSampler* sampler) => vkCreateSampler(device, createInfo, allocator, sampler).AssertSuccess(nameof(vkCreateSampler));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateSamplerYcbcrConversion(VkDevice device, VkSamplerYcbcrConversionCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSamplerYcbcrConversion* ycbcrConversion);
@@ -266,7 +267,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern void vkGetDeviceQueue2(VkDevice device, VkDeviceQueueInfo2* queueInfo, VkQueue* queue);
         public static void GetDeviceQueue2(VkDevice device, VkDeviceQueueInfo2* queueInfo, VkQueue* queue) => vkGetDeviceQueue2(device, queueInfo, queue);
         [DllImport("vulkan-1")] private static extern VkResult vkGetEventStatus(VkDevice device, VkEvent @event);
-        public static VkResult GetEventStatus(VkDevice device, VkEvent @event) => vkGetEventStatus(device, @event);
+        public static void GetEventStatus(VkDevice device, VkEvent @event) => vkGetEventStatus(device, @event).AssertSuccess(nameof(vkGetEventStatus));
         [DllImport("vulkan-1")] private static extern VkResult vkGetFenceStatus(VkDevice device, VkFence fence);
         public static void GetFenceStatus(VkDevice device, VkFence fence) => vkGetFenceStatus(device, fence).AssertSuccess(nameof(vkGetFenceStatus));
         [DllImport("vulkan-1")] private static extern void vkGetImageMemoryRequirements(VkDevice device, VkImage image, VkMemoryRequirements* memoryRequirements);
@@ -298,7 +299,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceImageFormatProperties(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkImageFormatProperties* imageFormatProperties);
         public static void GetPhysicalDeviceImageFormatProperties(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkImageFormatProperties* imageFormatProperties) => vkGetPhysicalDeviceImageFormatProperties(physicalDevice, format, type, tiling, usage, flags, imageFormatProperties).AssertSuccess(nameof(vkGetPhysicalDeviceImageFormatProperties));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceImageFormatProperties2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceImageFormatInfo2* imageFormatInfo, VkImageFormatProperties2* imageFormatProperties);
-        public static VkResult GetPhysicalDeviceImageFormatProperties2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceImageFormatInfo2* imageFormatInfo, VkImageFormatProperties2* imageFormatProperties) => vkGetPhysicalDeviceImageFormatProperties2(physicalDevice, imageFormatInfo, imageFormatProperties);
+        public static void GetPhysicalDeviceImageFormatProperties2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceImageFormatInfo2* imageFormatInfo, VkImageFormatProperties2* imageFormatProperties) => vkGetPhysicalDeviceImageFormatProperties2(physicalDevice, imageFormatInfo, imageFormatProperties).AssertSuccess(nameof(vkGetPhysicalDeviceImageFormatProperties2));
         [DllImport("vulkan-1")] private static extern void vkGetPhysicalDeviceMemoryProperties(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties* memoryProperties);
         public static void GetPhysicalDeviceMemoryProperties(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties* memoryProperties) => vkGetPhysicalDeviceMemoryProperties(physicalDevice, memoryProperties);
         [DllImport("vulkan-1")] private static extern void vkGetPhysicalDeviceMemoryProperties2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceMemoryProperties2* memoryProperties);
@@ -360,8 +361,10 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern void vkUpdateDescriptorSets(VkDevice device, uint descriptorWriteCount, VkWriteDescriptorSet* descriptorWrites, uint descriptorCopyCount, VkCopyDescriptorSet* descriptorCopies);
         public static void UpdateDescriptorSets(VkDevice device, uint descriptorWriteCount, VkWriteDescriptorSet* descriptorWrites, uint descriptorCopyCount, VkCopyDescriptorSet* descriptorCopies) => vkUpdateDescriptorSets(device, descriptorWriteCount, descriptorWrites, descriptorCopyCount, descriptorCopies);
         [DllImport("vulkan-1")] private static extern VkResult vkWaitForFences(VkDevice device, uint fenceCount, VkFence* fences, VkBool32 waitAll, ulong timeout);
-        public static VkResult WaitForFences(VkDevice device, uint fenceCount, VkFence* fences, VkBool32 waitAll, ulong timeout) => vkWaitForFences(device, fenceCount, fences, waitAll, timeout);
+        public static void WaitForFences(VkDevice device, uint fenceCount, VkFence* fences, VkBool32 waitAll, ulong timeout) => vkWaitForFences(device, fenceCount, fences, waitAll, timeout).AssertSuccess(nameof(vkWaitForFences));
         [DllImport("vulkan-1")] private static extern VkResult vkWaitSemaphores(VkDevice device, VkSemaphoreWaitInfo* waitInfo, ulong timeout);
         public static void WaitSemaphores(VkDevice device, VkSemaphoreWaitInfo* waitInfo, ulong timeout) => vkWaitSemaphores(device, waitInfo, timeout).AssertSuccess(nameof(vkWaitSemaphores));
+
+        //paste here
     }
 }

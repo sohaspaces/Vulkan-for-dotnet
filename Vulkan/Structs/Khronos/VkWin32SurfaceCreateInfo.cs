@@ -14,10 +14,10 @@ namespace Vulkan.Structs.Khronos
 
 
 
-        public nint Hinstance { get; init; }
+        public nint HInstance { get; init; }
 
 
 
-        public nint Hwnd { get; init; }
+        public nint HWnd { get; init; }
     }
 }

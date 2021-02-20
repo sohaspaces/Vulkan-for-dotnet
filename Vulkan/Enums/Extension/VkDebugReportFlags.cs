@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Extension
 {
+    [System.Flags]
     public enum VkDebugReportFlags
     {
         Information = 0x00000001,

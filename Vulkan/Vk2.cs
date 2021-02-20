@@ -7,7 +7,7 @@ using Vulkan.Structs;
 using Vulkan.Structs.Khronos;
 namespace Vulkan
 {
-    public static unsafe class VkKhr
+    public static unsafe partial class VkKhr
     {
         [DllImport("vulkan-1")] private static extern VkResult vkAcquireNextImage2KHR(VkDevice device, VkAcquireNextImageInfo* acquireInfo, uint* imageIndex);
         public static void AcquireNextImage2(VkDevice device, VkAcquireNextImageInfo* acquireInfo, uint* imageIndex) => vkAcquireNextImage2KHR(device, acquireInfo, imageIndex).AssertSuccess(nameof(vkAcquireNextImage2KHR));
@@ -32,7 +32,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkCreateWaylandSurfaceKHR(VkInstance instance, VkWaylandSurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface);
         public static void CreateWaylandSurface(VkInstance instance, VkWaylandSurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface) => vkCreateWaylandSurfaceKHR(instance, createInfo, allocator, surface).AssertSuccess(nameof(vkCreateWaylandSurfaceKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkCreateWin32SurfaceKHR(VkInstance instance, VkWin32SurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface);
-        public static VkResult CreateWin32Surface(VkInstance instance, VkWin32SurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface) => vkCreateWin32SurfaceKHR(instance, createInfo, allocator, surface);
+        public static void CreateWin32Surface(VkInstance instance, VkWin32SurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface) => vkCreateWin32SurfaceKHR(instance, createInfo, allocator, surface).AssertSuccess(nameof(vkCreateWaylandSurfaceKHR));
         [DllImport("vulkan-1")] private static extern void vkDestroySurfaceKHR(VkInstance instance, VkSurface surface, VkAllocationCallbacks* allocator);
         public static void DestroySurface(VkInstance instance, VkSurface surface, VkAllocationCallbacks* allocator) => vkDestroySurfaceKHR(instance, surface, allocator);
         [DllImport("vulkan-1")] private static extern void vkDestroySwapchainKHR(VkDevice device, VkSwapchain swapchain, VkAllocationCallbacks* allocator);
@@ -44,51 +44,51 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkGetDeviceGroupSurfacePresentModesKHR(VkDevice device, VkSurface surface, VkDeviceGroupPresentModeFlags* modes);
         public static void GetDeviceGroupSurfacePresentModes(VkDevice device, VkSurface surface, VkDeviceGroupPresentModeFlags* modes) => vkGetDeviceGroupSurfacePresentModesKHR(device, surface, modes).AssertSuccess(nameof(vkGetDeviceGroupSurfacePresentModesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDisplayModeProperties2KHR(VkPhysicalDevice physicalDevice, VkDisplay display, uint* propertyCount, VkDisplayModeProperties2* properties);
-        public static VkResult GetDisplayModeProperties2(VkPhysicalDevice physicalDevice, VkDisplay display, uint* propertyCount, VkDisplayModeProperties2* properties) => vkGetDisplayModeProperties2KHR(physicalDevice, display, propertyCount, properties);
+        public static void GetDisplayModeProperties2(VkPhysicalDevice physicalDevice, VkDisplay display, uint* propertyCount, VkDisplayModeProperties2* properties) => vkGetDisplayModeProperties2KHR(physicalDevice, display, propertyCount, properties).AssertSuccess(nameof(vkGetDisplayModeProperties2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDisplayModePropertiesKHR(VkPhysicalDevice physicalDevice, VkDisplay display, uint* propertyCount, VkDisplayModeProperties* properties);
         public static void GetDisplayModeProperties(VkPhysicalDevice physicalDevice, VkDisplay display, uint* propertyCount, VkDisplayModeProperties* properties) => vkGetDisplayModePropertiesKHR(physicalDevice, display, propertyCount, properties).AssertSuccess(nameof(vkGetDisplayModePropertiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDisplayPlaneCapabilities2KHR(VkPhysicalDevice physicalDevice, VkDisplayPlaneInfo2* displayPlaneInfo, VkDisplayPlaneCapabilities2* capabilities);
-        public static VkResult GetDisplayPlaneCapabilities2(VkPhysicalDevice physicalDevice, VkDisplayPlaneInfo2* displayPlaneInfo, VkDisplayPlaneCapabilities2* capabilities) => vkGetDisplayPlaneCapabilities2KHR(physicalDevice, displayPlaneInfo, capabilities);
+        public static void GetDisplayPlaneCapabilities2(VkPhysicalDevice physicalDevice, VkDisplayPlaneInfo2* displayPlaneInfo, VkDisplayPlaneCapabilities2* capabilities) => vkGetDisplayPlaneCapabilities2KHR(physicalDevice, displayPlaneInfo, capabilities).AssertSuccess(nameof(vkGetDisplayPlaneCapabilities2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDisplayPlaneCapabilitiesKHR(VkPhysicalDevice physicalDevice, VkDisplayMode mode, uint planeIndex, VkDisplayPlaneCapabilities* capabilities);
         public static void GetDisplayPlaneCapabilities(VkPhysicalDevice physicalDevice, VkDisplayMode mode, uint planeIndex, VkDisplayPlaneCapabilities* capabilities) => vkGetDisplayPlaneCapabilitiesKHR(physicalDevice, mode, planeIndex, capabilities).AssertSuccess(nameof(vkGetDisplayPlaneCapabilitiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetDisplayPlaneSupportedDisplaysKHR(VkPhysicalDevice physicalDevice, uint planeIndex, uint* displayCount, VkDisplay* displays);
         public static void GetDisplayPlaneSupportedDisplays(VkPhysicalDevice physicalDevice, uint planeIndex, uint* displayCount, VkDisplay* displays) => vkGetDisplayPlaneSupportedDisplaysKHR(physicalDevice, planeIndex, displayCount, displays).AssertSuccess(nameof(vkGetDisplayPlaneSupportedDisplaysKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetFenceFdKHR(VkDevice device, VkFenceGetFdInfo* getFdInfo, int* fd);
         public static void GetFenceFd(VkDevice device, VkFenceGetFdInfo* getFdInfo, int* fd) => vkGetFenceFdKHR(device, getFdInfo, fd).AssertSuccess(nameof(vkGetFenceFdKHR));
-        [DllImport("vulkan-1")] private static extern VkResult vkGetFenceWin32HandleKHR(VkDevice device, VkFenceGetWin32HandleInfo* GetWin32handleInfo, nint handle);
-        public static VkResult GetFenceWin32Handle(VkDevice device, VkFenceGetWin32HandleInfo* GetWin32handleInfo, nint handle) => vkGetFenceWin32HandleKHR(device, GetWin32handleInfo, handle);
+        [DllImport("vulkan-1")] private static extern VkResult vkGetFenceWin32HandleKHR(VkDevice device, VkFenceGetWin32HandleInfo* getWin32handleInfo, nint handle);
+        public static void GetFenceWin32Handle(VkDevice device, VkFenceGetWin32HandleInfo* getWin32handleInfo, nint handle) => vkGetFenceWin32HandleKHR(device, getWin32handleInfo, handle).AssertSuccess(nameof(vkGetFenceWin32HandleKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryFdKHR(VkDevice device, VkMemoryGetFdInfo* getFdInfo, int* fd);
         public static void GetMemoryFd(VkDevice device, VkMemoryGetFdInfo* getFdInfo, int* fd) => vkGetMemoryFdKHR(device, getFdInfo, fd).AssertSuccess(nameof(vkGetMemoryFdKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryFdPropertiesKHR(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, int fd, VkMemoryFdProperties* memoryFdProperties);
         public static void GetMemoryFdProperties(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, int fd, VkMemoryFdProperties* memoryFdProperties) => vkGetMemoryFdPropertiesKHR(device, handleType, fd, memoryFdProperties).AssertSuccess(nameof(vkGetMemoryFdPropertiesKHR));
-        [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryWin32HandleKHR(VkDevice device, VkMemoryGetWin32HandleInfo* GetWin32handleInfo, nint handle);
-        public static VkResult GetMemoryWin32Handle(VkDevice device, VkMemoryGetWin32HandleInfo* GetWin32handleInfo, nint handle) => vkGetMemoryWin32HandleKHR(device, GetWin32handleInfo, handle);
+        [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryWin32HandleKHR(VkDevice device, VkMemoryGetWin32HandleInfo* getWin32handleInfo, nint handle);
+        public static void GetMemoryWin32Handle(VkDevice device, VkMemoryGetWin32HandleInfo* getWin32handleInfo, nint handle) => vkGetMemoryWin32HandleKHR(device, getWin32handleInfo, handle).AssertSuccess(nameof(vkGetMemoryWin32HandleKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetMemoryWin32HandlePropertiesKHR(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, nint handle, VkMemoryWin32HandleProperties* MemoryWin32handleProperties);
-        public static VkResult GetMemoryWin32HandleProperties(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, nint handle, VkMemoryWin32HandleProperties* MemoryWin32handleProperties) => vkGetMemoryWin32HandlePropertiesKHR(device, handleType, handle, MemoryWin32handleProperties);
+        public static void GetMemoryWin32HandleProperties(VkDevice device, VkExternalMemoryHandleTypeFlags handleType, nint handle, VkMemoryWin32HandleProperties* MemoryWin32handleProperties) => vkGetMemoryWin32HandlePropertiesKHR(device, handleType, handle, MemoryWin32handleProperties).AssertSuccess(nameof(vkGetMemoryWin32HandlePropertiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceDisplayPlaneProperties2KHR(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayPlaneProperties2* properties);
-        public static VkResult GetPhysicalDeviceDisplayPlaneProperties2(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayPlaneProperties2* properties) => vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physicalDevice, propertyCount, properties);
+        public static void GetPhysicalDeviceDisplayPlaneProperties2(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayPlaneProperties2* properties) => vkGetPhysicalDeviceDisplayPlaneProperties2KHR(physicalDevice, propertyCount, properties).AssertSuccess(nameof(vkGetPhysicalDeviceDisplayPlaneProperties2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceDisplayPlanePropertiesKHR(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayPlaneProperties* properties);
         public static void GetPhysicalDeviceDisplayPlaneProperties(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayPlaneProperties* properties) => vkGetPhysicalDeviceDisplayPlanePropertiesKHR(physicalDevice, propertyCount, properties).AssertSuccess(nameof(vkGetPhysicalDeviceDisplayPlanePropertiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceDisplayProperties2KHR(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayProperties2* properties);
-        public static VkResult GetPhysicalDeviceDisplayProperties2(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayProperties2* properties) => vkGetPhysicalDeviceDisplayProperties2KHR(physicalDevice, propertyCount, properties);
+        public static void GetPhysicalDeviceDisplayProperties2(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayProperties2* properties) => vkGetPhysicalDeviceDisplayProperties2KHR(physicalDevice, propertyCount, properties).AssertSuccess(nameof(vkGetPhysicalDeviceDisplayProperties2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceDisplayPropertiesKHR(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayProperties* properties);
         public static void GetPhysicalDeviceDisplayProperties(VkPhysicalDevice physicalDevice, uint* propertyCount, VkDisplayProperties* properties) => vkGetPhysicalDeviceDisplayPropertiesKHR(physicalDevice, propertyCount, properties).AssertSuccess(nameof(vkGetPhysicalDeviceDisplayPropertiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDevicePresentRectanglesKHR(VkPhysicalDevice physicalDevice, VkSurface surface, uint* rectCount, VkRect2D* rects);
-        public static VkResult GetPhysicalDevicePresentRectangles(VkPhysicalDevice physicalDevice, VkSurface surface, uint* rectCount, VkRect2D* rects) => vkGetPhysicalDevicePresentRectanglesKHR(physicalDevice, surface, rectCount, rects);
+        public static void GetPhysicalDevicePresentRectangles(VkPhysicalDevice physicalDevice, VkSurface surface, uint* rectCount, VkRect2D* rects) => vkGetPhysicalDevicePresentRectanglesKHR(physicalDevice, surface, rectCount, rects).AssertSuccess(nameof(vkGetPhysicalDevicePresentRectanglesKHR));
         [DllImport("vulkan-1")] private static extern void vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(VkPhysicalDevice physicalDevice, VkQueryPoolPerformanceCreateInfo* performanceQueryCreateInfo, uint* numPasses);
         public static void GetPhysicalDeviceQueueFamilyPerformanceQueryPasses(VkPhysicalDevice physicalDevice, VkQueryPoolPerformanceCreateInfo* performanceQueryCreateInfo, uint* numPasses) => vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(physicalDevice, performanceQueryCreateInfo, numPasses);
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceCapabilities2KHR(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, Structs.Khronos.VkSurfaceCapabilities2* surfaceCapabilities);
-        public static VkResult GetPhysicalDeviceSurfaceCapabilities2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, Structs.Khronos.VkSurfaceCapabilities2* surfaceCapabilities) => vkGetPhysicalDeviceSurfaceCapabilities2KHR(physicalDevice, surfaceInfo, surfaceCapabilities);
+        public static void GetPhysicalDeviceSurfaceCapabilities2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, Structs.Khronos.VkSurfaceCapabilities2* surfaceCapabilities) => vkGetPhysicalDeviceSurfaceCapabilities2KHR(physicalDevice, surfaceInfo, surfaceCapabilities).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceCapabilities2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceCapabilitiesKHR(VkPhysicalDevice physicalDevice, VkSurface surface, VkSurfaceCapabilities* surfaceCapabilities);
         public static void GetPhysicalDeviceSurfaceCapabilities(VkPhysicalDevice physicalDevice, VkSurface surface, VkSurfaceCapabilities* surfaceCapabilities) => vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, surfaceCapabilities).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceCapabilitiesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceFormats2KHR(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* surfaceFormatCount, VkSurfaceFormat2* surfaceFormats);
-        public static VkResult GetPhysicalDeviceSurfaceFormats2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* surfaceFormatCount, VkSurfaceFormat2* surfaceFormats) => vkGetPhysicalDeviceSurfaceFormats2KHR(physicalDevice, surfaceInfo, surfaceFormatCount, surfaceFormats);
+        public static void GetPhysicalDeviceSurfaceFormats2(VkPhysicalDevice physicalDevice, VkPhysicalDeviceSurfaceInfo2* surfaceInfo, uint* surfaceFormatCount, VkSurfaceFormat2* surfaceFormats) => vkGetPhysicalDeviceSurfaceFormats2KHR(physicalDevice, surfaceInfo, surfaceFormatCount, surfaceFormats).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceFormats2KHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceFormatsKHR(VkPhysicalDevice physicalDevice, VkSurface surface, uint* surfaceFormatCount, VkSurfaceFormat* surfaceFormats);
         public static void GetPhysicalDeviceSurfaceFormats(VkPhysicalDevice physicalDevice, VkSurface surface, uint* surfaceFormatCount, VkSurfaceFormat* surfaceFormats) => vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, surface, surfaceFormatCount, surfaceFormats).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceFormatsKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfacePresentModesKHR(VkPhysicalDevice physicalDevice, VkSurface surface, uint* presentModeCount, VkPresentMode* presentModes);
         public static void GetPhysicalDeviceSurfacePresentModes(VkPhysicalDevice physicalDevice, VkSurface surface, uint* presentModeCount, VkPresentMode* presentModes) => vkGetPhysicalDeviceSurfacePresentModesKHR(physicalDevice, surface, presentModeCount, presentModes).AssertSuccess(nameof(vkGetPhysicalDeviceSurfacePresentModesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSurfaceSupportKHR(VkPhysicalDevice physicalDevice, uint queueFamilyIndex, VkSurface surface, VkBool32* supported);
-        public static VkResult GetPhysicalDeviceSurfaceSupport(VkPhysicalDevice physicalDevice, uint queueFamilyIndex, VkSurface surface, VkBool32* supported) => vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, queueFamilyIndex, surface, supported);
+        public static void GetPhysicalDeviceSurfaceSupport(VkPhysicalDevice physicalDevice, uint queueFamilyIndex, VkSurface surface, VkBool32* supported) => vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, queueFamilyIndex, surface, supported).AssertSuccess(nameof(vkGetPhysicalDeviceSurfaceSupportKHR));
         [DllImport("vulkan-1")] private static extern VkBool32 vkGetPhysicalDeviceWin32PresentationSupportKHR(VkPhysicalDevice physicalDevice, uint queueFamilyIndex);
         public static VkBool32 GetPhysicalDeviceWin32PresentationSupport(VkPhysicalDevice physicalDevice, uint queueFamilyIndex) => vkGetPhysicalDeviceWin32PresentationSupportKHR(physicalDevice, queueFamilyIndex);
         [DllImport("vulkan-1")] private static extern VkResult vkGetPipelineExecutableInternalRepresentationsKHR(VkDevice device, VkPipelineExecutableInfo* executableInfo, uint* internalRepresentationCount, VkPipelineExecutableInternalRepresentation* internalRepresentations);
@@ -99,8 +99,8 @@ namespace Vulkan
         public static void GetPipelineExecutableStatistics(VkDevice device, VkPipelineExecutableInfo* executableInfo, uint* statisticCount, VkPipelineExecutableStatistic* statistics) => vkGetPipelineExecutableStatisticsKHR(device, executableInfo, statisticCount, statistics).AssertSuccess(nameof(vkGetPipelineExecutableStatisticsKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetSemaphoreFdKHR(VkDevice device, VkSemaphoreGetFdInfo* getFdInfo, int* fd);
         public static void GetSemaphoreFd(VkDevice device, VkSemaphoreGetFdInfo* getFdInfo, int* fd) => vkGetSemaphoreFdKHR(device, getFdInfo, fd).AssertSuccess(nameof(vkGetSemaphoreFdKHR));
-        [DllImport("vulkan-1")] private static extern VkResult vkGetSemaphoreWin32HandleKHR(VkDevice device, VkSemaphoreGetWin32HandleInfo* GetWin32handleInfo, nint handle);
-        public static VkResult GetSemaphoreWin32Handle(VkDevice device, VkSemaphoreGetWin32HandleInfo* GetWin32handleInfo, nint handle) => vkGetSemaphoreWin32HandleKHR(device, GetWin32handleInfo, handle);
+        [DllImport("vulkan-1")] private static extern VkResult vkGetSemaphoreWin32HandleKHR(VkDevice device, VkSemaphoreGetWin32HandleInfo* getWin32handleInfo, nint handle);
+        public static void GetSemaphoreWin32Handle(VkDevice device, VkSemaphoreGetWin32HandleInfo* GetWin32handleInfo, nint handle) => vkGetSemaphoreWin32HandleKHR(device, GetWin32handleInfo, handle).AssertSuccess(nameof(vkGetSemaphoreWin32HandleKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetSwapchainImagesKHR(VkDevice device, VkSwapchain swapchain, uint* swapchainImageCount, VkImage* swapchainImages);
         public static void GetSwapchainImages(VkDevice device, VkSwapchain swapchain, uint* swapchainImageCount, VkImage* swapchainImages) => vkGetSwapchainImagesKHR(device, swapchain, swapchainImageCount, swapchainImages).AssertSuccess(nameof(vkGetSwapchainImagesKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkGetSwapchainStatusKHR(VkDevice device, VkSwapchain swapchain);
@@ -108,14 +108,19 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkImportFenceFdKHR(VkDevice device, VkImportFenceFdInfo* importFenceFdInfo);
         public static void ImportFenceFd(VkDevice device, VkImportFenceFdInfo* importFenceFdInfo) => vkImportFenceFdKHR(device, importFenceFdInfo).AssertSuccess(nameof(vkImportFenceFdKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkImportFenceWin32HandleKHR(VkDevice device, VkImportFenceWin32HandleInfo* ImportFenceWin32handleInfo);
-        public static VkResult ImportFenceWin32Handle(VkDevice device, VkImportFenceWin32HandleInfo* ImportFenceWin32handleInfo) => vkImportFenceWin32HandleKHR(device, ImportFenceWin32handleInfo);
+        public static void ImportFenceWin32Handle(VkDevice device, VkImportFenceWin32HandleInfo* ImportFenceWin32handleInfo) => vkImportFenceWin32HandleKHR(device, ImportFenceWin32handleInfo).AssertSuccess(nameof(vkImportFenceWin32HandleKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkImportSemaphoreFdKHR(VkDevice device, VkImportSemaphoreFdInfo* importSemaphoreFdInfo);
         public static void ImportSemaphoreFd(VkDevice device, VkImportSemaphoreFdInfo* importSemaphoreFdInfo) => vkImportSemaphoreFdKHR(device, importSemaphoreFdInfo).AssertSuccess(nameof(vkImportSemaphoreFdKHR));
-        [DllImport("vulkan-1")] private static extern VkResult vkImportSemaphoreWin32HandleKHR(VkDevice device, VkImportSemaphoreWin32HandleInfo* ImportSemaphoreWin32handleInfo);
-        public static VkResult ImportSemaphoreWin32Handle(VkDevice device, VkImportSemaphoreWin32HandleInfo* ImportSemaphoreWin32handleInfo) => vkImportSemaphoreWin32HandleKHR(device, ImportSemaphoreWin32handleInfo);
+        [DllImport("vulkan-1")] private static extern VkResult vkImportSemaphoreWin32HandleKHR(VkDevice device, VkImportSemaphoreWin32HandleInfo* importSemaphoreWin32handleInfo);
+        public static void ImportSemaphoreWin32Handle(VkDevice device, VkImportSemaphoreWin32HandleInfo* importSemaphoreWin32handleInfo) => vkImportSemaphoreWin32HandleKHR(device, importSemaphoreWin32handleInfo).AssertSuccess(nameof(vkImportSemaphoreWin32HandleKHR));
         [DllImport("vulkan-1")] private static extern VkResult vkQueuePresentKHR(VkQueue queue, VkPresentInfo* presentInfo);
         public static void QueuePresent(VkQueue queue, VkPresentInfo* presentInfo) => vkQueuePresentKHR(queue, presentInfo).AssertSuccess(nameof(vkQueuePresentKHR));
         [DllImport("vulkan-1")] private static extern void vkReleaseProfilingLockKHR(VkDevice device);
         public static void ReleaseProfilingLock(VkDevice device) => vkReleaseProfilingLockKHR(device);
+
+        //paste here
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkExternalMemoryHandleTypeFlags
     {
         OpaqueFd = 0x00000001,

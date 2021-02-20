@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkImageAspectFlags
     {
         AspectColor = 0x00000001,

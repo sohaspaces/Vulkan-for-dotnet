@@ -7,7 +7,7 @@ using Vulkan.Structs;
 using Vulkan.Structs.Nvidia;
 namespace Vulkan
 {
-    public static unsafe class VkNv
+    public static unsafe partial class VkNv
     {
         [DllImport("vulkan-1")] private static extern VkResult vkBindAccelerationStructureMemoryNV(VkDevice device, uint bindInfoCount, VkBindAccelerationStructureMemoryInfo* bindInfos);
         public static void BindAccelerationStructureMemory(VkDevice device, uint bindInfoCount, VkBindAccelerationStructureMemoryInfo* bindInfos) => vkBindAccelerationStructureMemoryNV(device, bindInfoCount, bindInfos).AssertSuccess(nameof(vkBindAccelerationStructureMemoryNV));
@@ -54,12 +54,17 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(VkPhysicalDevice physicalDevice, uint* propertyCount, VkCooperativeMatrixProperties* properties);
         public static void GetPhysicalDeviceCooperativeMatrixProperties(VkPhysicalDevice physicalDevice, uint* propertyCount, VkCooperativeMatrixProperties* properties) => vkGetPhysicalDeviceCooperativeMatrixPropertiesNV(physicalDevice, propertyCount, properties).AssertSuccess(nameof(vkGetPhysicalDeviceCooperativeMatrixPropertiesNV));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceExternalImageFormatPropertiesNV(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkExternalMemoryHandleTypeFlags externalHandleType, Structs.Nvidia.VkExternalImageFormatProperties* externalImageFormatProperties);
-        public static VkResult GetPhysicalDeviceExternalImageFormatProperties(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkExternalMemoryHandleTypeFlags externalHandleType, Structs.Nvidia.VkExternalImageFormatProperties* externalImageFormatProperties) => vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physicalDevice, format, type, tiling, usage, flags, externalHandleType, externalImageFormatProperties);
+        public static void GetPhysicalDeviceExternalImageFormatProperties(VkPhysicalDevice physicalDevice, VkFormat format, VkImageType type, VkImageTiling tiling, VkImageUsageFlags usage, VkImageCreateFlags flags, VkExternalMemoryHandleTypeFlags externalHandleType, Structs.Nvidia.VkExternalImageFormatProperties* externalImageFormatProperties) => vkGetPhysicalDeviceExternalImageFormatPropertiesNV(physicalDevice, format, type, tiling, usage, flags, externalHandleType, externalImageFormatProperties).AssertSuccess(nameof(vkGetPhysicalDeviceExternalImageFormatPropertiesNV));
         [DllImport("vulkan-1")] private static extern VkResult vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(VkPhysicalDevice physicalDevice, uint* combinationCount, VkFramebufferMixedSamplesCombination* combinations);
         public static void GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinations(VkPhysicalDevice physicalDevice, uint* combinationCount, VkFramebufferMixedSamplesCombination* combinations) => vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(physicalDevice, combinationCount, combinations).AssertSuccess(nameof(vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV));
         [DllImport("vulkan-1")] private static extern void vkGetQueueCheckpointDataNV(VkQueue queue, uint* checkpointDataCount, VkCheckpointData* checkpointData);
         public static void GetQueueCheckpointData(VkQueue queue, uint* checkpointDataCount, VkCheckpointData* checkpointData) => vkGetQueueCheckpointDataNV(queue, checkpointDataCount, checkpointData);
         [DllImport("vulkan-1")] private static extern VkResult vkGetRayTracingShaderGroupHandlesNV(VkDevice device, VkPipeline pipeline, uint firstGroup, uint groupCount, nuint dataSize, void* data);
         public static void GetRayTracingShaderGroupHandles(VkDevice device, VkPipeline pipeline, uint firstGroup, uint groupCount, nuint dataSize, void* data) => vkGetRayTracingShaderGroupHandlesNV(device, pipeline, firstGroup, groupCount, dataSize, data).AssertSuccess(nameof(vkGetRayTracingShaderGroupHandlesNV));
+
+        //paste here
+
+
+
     }
 }

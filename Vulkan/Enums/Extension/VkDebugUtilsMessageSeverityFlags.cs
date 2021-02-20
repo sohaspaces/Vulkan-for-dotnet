@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Extension
 {
+    [System.Flags]
     public enum VkDebugUtilsMessageSeverityFlags
     {
         Verbose = 0x00000001,

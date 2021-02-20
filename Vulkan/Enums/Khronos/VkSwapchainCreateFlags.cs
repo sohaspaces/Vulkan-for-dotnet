@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Khronos
 {
+    [System.Flags]
     public enum VkSwapchainCreateFlags
     {
         SplitInstanceBindRegions = 0x00000001,

@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkPipelineCreateFlags
     {
         DisableOptimization = 0x00000001,

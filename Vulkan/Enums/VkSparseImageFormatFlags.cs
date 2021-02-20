@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkSparseImageFormatFlags
     {
         SingleMiptail = 0x00000001,

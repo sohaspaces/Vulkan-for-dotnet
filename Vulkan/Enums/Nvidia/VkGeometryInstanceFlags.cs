@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Nvidia
 {
+    [System.Flags]
     public enum VkGeometryInstanceFlags
     {
         TriangleCullDisable = 0x00000001,

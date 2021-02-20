@@ -129,10 +129,15 @@ namespace Vulkan.Structs
     {
         public const uint MaxSize = 2;
 
-        private readonly T k0;
-        private readonly T k1;
+        private T k0;
+        private T k1;
 
         public static implicit operator Span<T>(UnmanagedArray2<T> x) => x.Unwrap();
+        public static implicit operator UnmanagedArray2<T>((T, T) x) => new UnmanagedArray2<T>()
+        {
+            k0 = x.Item1,
+            k1 = x.Item2
+        };
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -141,11 +146,17 @@ namespace Vulkan.Structs
     {
         public const uint MaxSize = 2;
 
-        private readonly T k0;
-        private readonly T k1;
-        private readonly T k2;
+        private T k0;
+        private T k1;
+        private T k2;
 
         public static implicit operator Span<T>(UnmanagedArray3<T> x) => x.Unwrap();
+        public static implicit operator UnmanagedArray3<T>((T, T, T) x) => new UnmanagedArray3<T>()
+        {
+            k0 = x.Item1,
+            k1 = x.Item2,
+            k2 = x.Item3
+        };
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct UnmanagedArray4<T>
@@ -153,12 +164,19 @@ namespace Vulkan.Structs
     {
         public const uint MaxSize = 2;
 
-        private readonly T k0;
-        private readonly T k1;
-        private readonly T k2;
-        private readonly T k3;
+        private T k0;
+        private T k1;
+        private T k2;
+        private T k3;
 
         public static implicit operator Span<T>(UnmanagedArray4<T> x) => x.Unwrap();
+        public static implicit operator UnmanagedArray4<T>((T, T, T, T) x) => new UnmanagedArray4<T>()
+        {
+            k0 = x.Item1,
+            k1 = x.Item2,
+            k2 = x.Item3,
+            k3 = x.Item4
+        };
     }
 
     public static class Extensions

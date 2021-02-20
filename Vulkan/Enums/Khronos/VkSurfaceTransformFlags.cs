@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums.Khronos
 {
+    [System.Flags]
     public enum VkSurfaceTransformFlags
     {
         Identity = 0x00000001,

@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="VulkanNotSuccess" xml:space="preserve">
-    <value>Calling the Vulkan API function '{0}' returned not Success but {1}</value>
+    <value>Calling the Vulkan API function '{0}' returned {1}</value>
   </data>
 </root>

@@ -6,7 +6,7 @@ using Vulkan.Handles.Intel;
 using Vulkan.Structs.Intel;
 namespace Vulkan
 {
-    public static unsafe class VkIntel
+    public static unsafe partial class VkIntel
     {
         [DllImport("vulkan-1")] private static extern VkResult vkAcquirePerformanceConfigurationINTEL(VkDevice device, VkPerformanceConfigurationAcquireInfo* acquireInfo, VkPerformanceConfiguration* configuration);
         public static void AcquirePerformanceConfiguration(VkDevice device, VkPerformanceConfigurationAcquireInfo* acquireInfo, VkPerformanceConfiguration* configuration) => vkAcquirePerformanceConfigurationINTEL(device, acquireInfo, configuration).AssertSuccess(nameof(vkAcquirePerformanceConfigurationINTEL));
@@ -26,5 +26,10 @@ namespace Vulkan
         public static void ReleasePerformanceConfiguration(VkDevice device, VkPerformanceConfiguration configuration) => vkReleasePerformanceConfigurationINTEL(device, configuration).AssertSuccess(nameof(vkReleasePerformanceConfigurationINTEL));
         [DllImport("vulkan-1")] private static extern void vkUninitializePerformanceApiINTEL(VkDevice device);
         public static void UninitializePerformanceApi(VkDevice device) => vkUninitializePerformanceApiINTEL(device);
+
+
+        //paste here
+
+
     }
 }

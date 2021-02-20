@@ -61,7 +61,7 @@ namespace Vulkan {
         }
         
         /// <summary>
-        ///   Calling the Vulkan API function &apos;{0}&apos; returned not Success but {1}과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Calling the Vulkan API function &apos;{0}&apos; returned {1}과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string VulkanNotSuccess {
             get {

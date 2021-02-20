@@ -6,7 +6,7 @@ using Vulkan.Structs;
 using Vulkan.Structs.Google;
 namespace Vulkan
 {
-    public static unsafe class VkGoogle
+    public static unsafe partial class VkGoogle
     {
         [DllImport("vulkan-1")] private static extern VkResult vkCreateImagePipeSurfaceFUCHSIA(VkInstance instance, VkImagePipeSurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface);
         public static void CreateImagePipeSurface(VkInstance instance, VkImagePipeSurfaceCreateInfo* createInfo, VkAllocationCallbacks* allocator, VkSurface* surface) => vkCreateImagePipeSurfaceFUCHSIA(instance, createInfo, allocator, surface).AssertSuccess(nameof(vkCreateImagePipeSurfaceFUCHSIA));
@@ -18,5 +18,10 @@ namespace Vulkan
         public static void GetPastPresentationTiming(VkDevice device, VkSwapchain swapchain, uint* presentationTimingCount, VkPastPresentationTiming* presentationTimings) => vkGetPastPresentationTimingGOOGLE(device, swapchain, presentationTimingCount, presentationTimings).AssertSuccess(nameof(vkGetPastPresentationTimingGOOGLE));
         [DllImport("vulkan-1")] private static extern VkResult vkGetRefreshCycleDurationGOOGLE(VkDevice device, VkSwapchain swapchain, VkRefreshCycleDuration* displayTimingProperties);
         public static void GetRefreshCycleDuration(VkDevice device, VkSwapchain swapchain, VkRefreshCycleDuration* displayTimingProperties) => vkGetRefreshCycleDurationGOOGLE(device, swapchain, displayTimingProperties).AssertSuccess(nameof(vkGetRefreshCycleDurationGOOGLE));
+
+
+        //paste here
+
+
     }
 }

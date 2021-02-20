@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkImageUsageFlags
     {
         TransferSrc = 0x00000001,

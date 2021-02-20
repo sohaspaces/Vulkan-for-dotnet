@@ -1,5 +1,6 @@
 ﻿namespace Vulkan.Enums
 {
+    [System.Flags]
     public enum VkQueryResultFlags
     {
         SixtyFour = 0x00000001,
