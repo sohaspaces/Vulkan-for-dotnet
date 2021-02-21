@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Vulkan.Enums;
 namespace Vulkan
 {
     public static class VkExtensions
     {
-        private static readonly List<object> pins = new List<object>();
+        private static readonly HashSet<object> pins = new HashSet<object>();
 
         static VkExtensions()
         {
@@ -21,7 +22,7 @@ namespace Vulkan
         public static uint MakeVersion(this (int, int, int) tuple)
             => (uint)((tuple.Item1 << 22) + (tuple.Item2 << 12) + tuple.Item3);
 
-        public static unsafe byte* GetPointer(this string x, Encoding encoding)
+        public static unsafe byte* Pin(this string x, Encoding encoding)
         {
             var bytes = encoding.GetBytes(x);
             pins.Add(bytes);
@@ -29,22 +30,26 @@ namespace Vulkan
                 return ptr;
         }
 
-        public static unsafe T* GetPointer<T>(this T[] x)
+        public static unsafe T* Pin<T>(this T[] x, uint offset = 0)
             where T : unmanaged
         {
             pins.Add(x);
             fixed (T* ptr = x)
-                return ptr;
+                return ptr + offset;
         }
 
 
-        public static unsafe T** GetPointer<T>(this T*[] x)
+        public static unsafe T** Pin<T>(this T*[] x, uint offset = 0)
             where T : unmanaged
         {
             pins.Add(x);
             fixed (T** ptr = x)
-                return ptr;
+                return ptr + offset;
         }
+
+        public static unsafe T* Pin<T>(ref this T x)
+            where T : unmanaged
+            => (T*)Unsafe.AsPointer(ref x);
 
         public static unsafe string ReadCstr(byte* ptr, Encoding encoding)
         {
