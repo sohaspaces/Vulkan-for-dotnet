@@ -3,7 +3,7 @@
 
 Overview
 --------
-This project provides extraneous convinience and abstractions of (../README.md, VulkanForDotnet).
+This project provides extraneous convinience and abstractions of [VulkanForDotnet](../README.md).
 Its nuget package name will be VulkanManaged.
 
 Status
