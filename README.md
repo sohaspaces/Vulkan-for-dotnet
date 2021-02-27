@@ -4,6 +4,7 @@ Vulkan for dotnet
 Overview
 --------
 A Khronos Vulkan API wrapper for .NET 5.0+ environment, without any abstraction but with only just the Vulkan API itself.
+All of the managed abstractions are in the project VulkanManaged. More information is in (./VulkanManaged/README.md, here)
 
 Status
 ------

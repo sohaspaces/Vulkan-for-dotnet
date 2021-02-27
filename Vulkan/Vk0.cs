@@ -326,8 +326,8 @@ namespace Vulkan
         public static void GetSemaphoreCounterValue(VkDevice device, VkSemaphore semaphore, ulong* value) => vkGetSemaphoreCounterValue(device, semaphore, value).AssertSuccess(nameof(vkGetSemaphoreCounterValue));
         [DllImport("vulkan-1")] private static extern VkResult vkInvalidateMappedMemoryRanges(VkDevice device, uint memoryRangeCount, VkMappedMemoryRange* memoryRanges);
         public static void InvalidateMappedMemoryRanges(VkDevice device, uint memoryRangeCount, VkMappedMemoryRange* memoryRanges) => vkInvalidateMappedMemoryRanges(device, memoryRangeCount, memoryRanges).AssertSuccess(nameof(vkInvalidateMappedMemoryRanges));
-        [DllImport("vulkan-1")] private static extern VkResult vkMapMemory(VkDevice device, VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** ppData);
-        public static void MapMemory(VkDevice device, VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** ppData) => vkMapMemory(device, memory, offset, size, flags, ppData).AssertSuccess(nameof(vkMapMemory));
+        [DllImport("vulkan-1")] private static extern VkResult vkMapMemory(VkDevice device, VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** data);
+        public static void MapMemory(VkDevice device, VkDeviceMemory memory, VkDeviceSize offset, VkDeviceSize size, VkMemoryMapFlags flags, void** data) => vkMapMemory(device, memory, offset, size, flags, data).AssertSuccess(nameof(vkMapMemory));
         [DllImport("vulkan-1")] private static extern VkResult vkMergePipelineCaches(VkDevice device, VkPipelineCache dstCache, uint srcCacheCount, VkPipelineCache* srcCaches);
         public static void MergePipelineCaches(VkDevice device, VkPipelineCache dstCache, uint srcCacheCount, VkPipelineCache* srcCaches) => vkMergePipelineCaches(device, dstCache, srcCacheCount, srcCaches).AssertSuccess(nameof(vkMergePipelineCaches));
         [DllImport("vulkan-1")] private static extern VkResult vkQueueBindSparse(VkQueue queue, uint bindInfoCount, VkBindSparseInfo* bindInfo, VkFence fence);

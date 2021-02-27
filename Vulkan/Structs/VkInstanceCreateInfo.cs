@@ -17,10 +17,10 @@ namespace Vulkan.Structs
 
         public uint EnabledLayerCount { get; init; }
 
-        public unsafe byte** PpEnabledLayerNames { get; init; }
+        public unsafe byte** EnabledLayerNames { get; init; }
 
         public uint EnabledExtensionCount { get; init; }
 
-        public unsafe byte** PpEnabledExtensionNames { get; init; }
+        public unsafe byte** EnabledExtensionNames { get; init; }
     }
 }

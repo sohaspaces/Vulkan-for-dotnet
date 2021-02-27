@@ -2,16 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <PackageId>VulkanForDotnet</PackageId>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Copyright>Copyright (c) 2021 Soha Moon</Copyright>
-    <Description>A Khronos Vulkan API wrapper for dotnet 5.0+ environment, without any abstraction but with only just the Vulkan API itself.</Description>
+    <Authors>sohaspaces</Authors>
+    <PackageProjectUrl>https://github.com/sohaspaces/Vulkan-for-dotnet/VulkanManaged</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sohaspaces/Vulkan-for-dotnet.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <Version>1.1.0</Version>
-    <Authors>sohaspaces</Authors>
-    <PackageProjectUrl>https://github.com/sohaspaces/Vulkan-for-dotnet</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Copyright>Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotnet 5.0+ environment.</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,22 +19,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Structs - 복사\**" />
-    <EmbeddedResource Remove="Structs - 복사\**" />
-    <None Remove="Structs - 복사\**" />
-    <None Include="../LICENSE.txt">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Structs\Amd\" />
-    <Folder Include="Structs\Google\" />
-    <Folder Include="Structs\Intel\" />
-    <Folder Include="Structs\Nintendo\" />
-    <Folder Include="Structs\Nvidia\Experimental\" />
+    <ProjectReference Include="..\Vulkan\Vulkan.csproj" />
   </ItemGroup>
 
   <ItemGroup>
