@@ -3,6 +3,7 @@ Contributing
 There are no strict standards in contributing to this repo.
 You're hereby welcomed to make and issue or PR,
 as long as your attitude can be commonly accepted.
+[Μore info](./CODE_OF_CONDUCT)
 
 How to contribute by Issue
 --------------------------
