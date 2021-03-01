@@ -22,7 +22,7 @@ namespace VulkanManaged
     /// Validation
     /// </term>
     /// <description>
-    /// It enables all of the validation layers supported in the current environment. The validation messages can be received by <see cref="VulkanApi.DebugCallback"/>
+    /// It can enable all of the validation layers supported in the current environment. The validation messages can be received by <see cref="VulkanApi.DebugCallback"/>
     /// </description>
     /// </item>
     /// <item>
@@ -65,6 +65,17 @@ namespace VulkanManaged
             /// </para>
             /// </summary>
             public IEnumerable<string> ApiExtensions { get; init; } = Enumerable.Empty<string>();
+
+            /// <summary>
+            /// <para>
+            /// The enabled API (instance) validation layers.
+            /// The default value is an empty enumeration.
+            /// <para>
+            /// Every components must be the name of a validation layer about which <see cref="IsSupportedLayer(string)"/> returns true.
+            /// </para>
+            /// </para>
+            /// </summary>
+            public IEnumerable<string> ApiLayers { get; init; } = Enumerable.Empty<string>();
 
             /// <summary>
             /// The flags for <see cref="VkInstanceCreateInfo"/>
@@ -190,7 +201,7 @@ namespace VulkanManaged
         public unsafe VulkanApi(Info info)
         {
             var extensionData = info.ApiExtensions.Union(debugExtensions).ToArray();
-            var layerData = SupportedLayers.ToArray();
+            var layerData = info.ApiLayers.ToArray();
 
             var appInfo = new VkApplicationInfo
             {
@@ -276,7 +287,7 @@ namespace VulkanManaged
                     foreach(var disposal in disposables)
                         disposal.Dispose();
                 }
-                Vk.DestroyInstance(api, Array.Empty<VkAllocationCallbacks>());
+                Vk.DestroyInstance(api, (VkAllocationCallbacks[])null);
                 disposedValue = true;
             }
         }
@@ -362,6 +373,22 @@ namespace VulkanManaged
                 return layers;
             }
         }
+
+        /// <summary>
+        /// Checks if a validation layer is supported in the current environment.
+        /// </summary>
+        /// <param name="name">The name of the validation layer</param>
+        /// <returns><c>true</c> if and only if the validation layers is supported</returns>
+        public static bool IsSupportedLayer(string name)
+            => SupportedLayers.Contains(name);
+
+        /// <summary>
+        /// Checks if validation layers are supported in the current environment.
+        /// </summary>
+        /// <param name="names">The names of the validation layers.</param>
+        /// <returns><c>true</c> if and only if all of the validation layers are supported.</returns>
+        public static bool IsSupportedLayers(IEnumerable<string> names)
+            => names.All((name) => SupportedLayers.Contains(name));
 
         #endregion
 

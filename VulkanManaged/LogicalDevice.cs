@@ -60,11 +60,22 @@ namespace VulkanManaged
             /// The enabled device extensions.
             /// The default value is an empty enumeration.
             /// <para>
-            /// Every components must be the name of an extension about which <see cref="IsSupportedExtension(string)"/> returns true.
+            /// Every components must be the name of an extension about which <see cref="PhysicalDevice.IsSupportedExtension(string)"/> returns true.
             /// </para>
             /// </para>
             /// </summary>
             public IEnumerable<string> DeviceExtensions { get; init; } = Enumerable.Empty<string>();
+
+            /// <summary>
+            /// <para>
+            /// The enabled device validation layers.
+            /// The default value is an empty enumeration.
+            /// <para>
+            /// Every components must be the name of a validation layer about which <see cref="PhysicalDevice.IsSupportedLayer(string)"/> returns true.
+            /// </para>
+            /// </para>
+            /// </summary>
+            public IEnumerable<string> DeviceLayers { get; init; } = Enumerable.Empty<string>();
 
             /// <summary>
             /// The <c>pNext</c> chain components for <see cref="VkDeviceCreateInfo"/>.
@@ -280,7 +291,7 @@ namespace VulkanManaged
                     foreach(var disposal in disposables)
                         disposal.Dispose();
                 }
-                Vk.DestroyDevice(deviceHandle, Array.Empty<VkAllocationCallbacks>());
+                Vk.DestroyDevice(deviceHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
             }
         }

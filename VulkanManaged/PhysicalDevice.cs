@@ -220,6 +220,24 @@ namespace VulkanManaged
             }
         }
 
+        /// <summary>
+        /// Checks if a validation layer is supported in the current environment.
+        /// </summary>
+        /// <param name="name">The name of the validation layer</param>
+        /// <returns><c>true</c> if and only if the validation layer is supported</returns>
+        public bool IsSupportedLayer(string name)
+            => SupportedExtensions.Contains(name);
+
+        /// <summary>
+        /// Checks if validation layers are supported in the current environment.
+        /// </summary>
+        /// <param name="names">The names of the validation layers.</param>
+        /// <returns><c>true</c> if and only if all of the validation layers are supported.</returns>
+        public bool IsSupportedLayers(IEnumerable<string> names)
+            => names.All((name) => SupportedExtensions.Contains(name));
+
+
+
         #endregion
 
         #endregion
