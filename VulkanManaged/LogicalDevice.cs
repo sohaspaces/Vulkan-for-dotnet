@@ -191,7 +191,7 @@ namespace VulkanManaged
 
         public unsafe LogicalDevice(Info info)
         {
-            if (info.PhysicalDevice.IsSupportedExtensions(info.DeviceExtensions))
+            if (!info.PhysicalDevice.IsSupportedExtensions(info.DeviceExtensions))
                 throw new NotSupportedException(ExceptionMessages.ExtensionNotPresent);
 
             familyProperties = new Dictionary<uint, VkQueueFamilyProperties>();
