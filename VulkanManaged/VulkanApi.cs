@@ -38,29 +38,110 @@ namespace VulkanManaged
     public sealed class VulkanApi : IDisposable
     {
 
-        #region Info
+        #region Infos
 
+        /// <summary>
+        /// Information to create a <see cref="VulkanApi"/> instance.
+        /// </summary>
         public sealed record Info
         {
-            public (int, int, int) ApiVersion { get; init; }
-            public IEnumerable<string> ApiExtensions { get; init; }
+            /// <summary>
+            /// <para>
+            /// Version of the Khronos Vulkan API.
+            /// <para>
+            /// The default value is (1, 0, 0).
+            /// </para>
+            /// </para>
+            /// </summary>
+            public (int, int, int) ApiVersion { get; init; } = (1, 0, 0);
 
+            /// <summary>
+            /// <para>
+            /// The enabled API (instance) extensions.
+            /// The default value is an empty enumeration.
+            /// <para>
+            /// Every components must be the name of an extension about which <see cref="IsSupportedExtension(string)"/> returns true.
+            /// </para>
+            /// </para>
+            /// </summary>
+            public IEnumerable<string> ApiExtensions { get; init; } = Enumerable.Empty<string>();
+
+            /// <summary>
+            /// The flags for <see cref="VkInstanceCreateInfo"/>
+            /// </summary>
             public VkInstanceCreateFlags ApiFlags { get; init; }
 
+            /// <summary>
+            /// The flags for <see cref="VkDebugUtilsMessengerCreateInfo"/>
+            /// </summary>
             public VkDebugUtilsMessengerCreateFlags DebugFlags { get; init; }
+
+            /// <summary>
+            /// <para>
+            /// The message types about which it is supposed to invoke <see cref="DebugCallback"/>.
+            /// <para>
+            /// The default value is <see cref="VkDebugUtilsMessageTypeFlags.General"/>.
+            /// </para>
+            /// </para>
+            /// </summary>
             public VkDebugUtilsMessageTypeFlags DebugMessageTypes { get; init; } = VkDebugUtilsMessageTypeFlags.General;
+
+            /// <summary>
+            /// <para>
+            /// The message severities about which it is supposed to invoke <see cref="DebugCallback"/>.
+            /// <para>
+            /// The default value is <see cref="VkDebugUtilsMessageSeverityFlags.Error"/>.
+            /// </para>
+            /// </para>
+            /// </summary>
             public VkDebugUtilsMessageSeverityFlags DebugMessageSeverities { get; init; } = VkDebugUtilsMessageSeverityFlags.Error;
+
+            /// <summary>
+            /// <para>
+            /// Reserved for future use.
+            /// </para>
+            /// </summary>
             public VkDebugUtilsMessengerCallbackDataFlags DebugCallbackDataFlags { get; init; }
 
-
+            /// <summary>
+            /// <para>
+            /// The name of the app.
+            /// </para>
+            /// </summary>
             public string AppName { get; init; }
+
+            /// <summary>
+            /// <para>
+            /// The version of the app.
+            /// </para>
+            /// </summary>
             public (int, int, int) AppVersion { get; init; }
 
+            /// <summary>
+            /// <para>
+            /// The name of the engine.
+            /// </para>
+            /// </summary>
             public string EngineName { get; init; }
+
+            /// <summary>
+            /// <para>
+            /// The version of the engine.
+            /// </para>
+            /// </summary>
             public (int, int, int) EngineVersion { get; init; }
 
-            public unsafe IEnumerable<INext<VkApplicationInfo>> AppNexts { get; init; }
-            public unsafe IEnumerable<INext<VkInstanceCreateInfo>> ApiNexts { get; init; }
+            /// <summary>
+            /// The <c>pNext</c> chain components for <see cref="VkApplicationInfo"/>.
+            /// </summary>
+            /// <seealso cref="INext{TAbout}"/>
+            public unsafe IEnumerable<INext<VkApplicationInfo>> AppNexts { get; init; } = Enumerable.Empty<INext<VkApplicationInfo>>();
+
+            /// <summary>
+            /// The <c>pNext</c> chain components for <see cref="VkInstanceCreateInfo"/>.
+            /// </summary>
+            /// <seealso cref="INext{TAbout}"/>
+            public unsafe IEnumerable<INext<VkInstanceCreateInfo>> ApiNexts { get; init; } = Enumerable.Empty<INext<VkInstanceCreateInfo>>();
         }
 
         #endregion
@@ -69,6 +150,9 @@ namespace VulkanManaged
 
         private VkInstance api;
 
+        /// <summary>
+        /// Callback for validation messages.
+        /// </summary>
         public event DebugCallback DebugCallback;
 
         private unsafe VkBool32 InternalDebugCallback(VkDebugUtilsMessageSeverityFlags severity, VkDebugUtilsMessageTypeFlags types, VkDebugUtilsMessengerCallbackData* callbackData, void* userData)
@@ -79,6 +163,9 @@ namespace VulkanManaged
 
         private IEnumerable<PhysicalDevice> physicalDevices;
 
+        /// <summary>
+        /// All of the existing physical devices in the current environment.
+        /// </summary>
         public IEnumerable<PhysicalDevice> PhysicalDevices
         {
             get
@@ -90,7 +177,7 @@ namespace VulkanManaged
                     var array = new VkPhysicalDevice[count];
                     Vk.EnumeratePhysicalDevices(api, ref count, array);
                     physicalDevices = from handle in array
-                                      select PhysicalDevice.FromHandle(handle);
+                                      select new PhysicalDevice(handle, this);
                 }
                 return physicalDevices;
             }
@@ -103,11 +190,12 @@ namespace VulkanManaged
         public unsafe VulkanApi(Info info)
         {
             var extensionData = info.ApiExtensions.Union(debugExtensions).ToArray();
-            var layerData = layers.ToArray();
+            var layerData = SupportedLayers.ToArray();
 
-            var appInfo = new VkApplicationInfo()
+            var appInfo = new VkApplicationInfo
             {
                 StructureType = VkStructureType.ApplicationInfo,
+
                 ApiVersion = info.ApiVersion.ComposeVersion(),
 
                 ApplicationName = info.AppName.Pin(Encoding.UTF8),
@@ -119,9 +207,10 @@ namespace VulkanManaged
                 Next = info.AppNexts.MakeChain()
             };
 
-            var debugInfo = new VkDebugUtilsMessengerCreateInfo()
+            var debugInfo = new VkDebugUtilsMessengerCreateInfo
             {
                 StructureType = VkStructureType.DebugUtilsMessengerCreateInfoExt,
+
                 Flags = info.DebugFlags,
 
                 MessageType = info.DebugMessageTypes,
@@ -133,15 +222,19 @@ namespace VulkanManaged
                 Next = info.ApiNexts.MakeChain()
             };
 
-            var apiInfo = new VkInstanceCreateInfo()
+            var apiInfo = new VkInstanceCreateInfo
             {
                 StructureType = VkStructureType.InstanceCreateInfo,
+
                 EnabledExtensionCount = (uint)extensionData.Length,
                 EnabledExtensionNames = extensionData.Pin(Encoding.UTF8),
+
                 EnabledLayerCount = (uint)layerData.Length,
                 EnabledLayerNames = layerData.Pin(Encoding.UTF8),
+
                 Flags = info.ApiFlags,
                 ApplicationInfo = appInfo.Pin(),
+
                 Next = &debugInfo
             };
 
@@ -160,9 +253,17 @@ namespace VulkanManaged
             }
         }
 
+        public PhysicalDevice GetAnyDevice()
+            => PhysicalDevices.FirstOrDefault() ?? throw new NotSupportedException(ExceptionMessages.DeviceNotFound);
+
         #endregion
 
         #region Destructors
+
+        private List<IDisposable> disposables = new List<IDisposable>();
+
+        public void AddPreviousDisposable(IDisposable x)
+            => disposables.Add(x);
 
         private bool disposedValue;
 
@@ -170,6 +271,11 @@ namespace VulkanManaged
         {
             if (!disposedValue)
             {
+                if(disposing)
+                {
+                    foreach(var disposal in disposables)
+                        disposal.Dispose();
+                }
                 Vk.DestroyInstance(api, Array.Empty<VkAllocationCallbacks>());
                 disposedValue = true;
             }
@@ -199,6 +305,9 @@ namespace VulkanManaged
 
         private static IEnumerable<string> extensions;
 
+        /// <summary>
+        /// All of the supported instance extensions in the current environment.
+        /// </summary>
         public static IEnumerable<string> SupportedExtensions
         {
             get
@@ -216,14 +325,27 @@ namespace VulkanManaged
             }
         }
 
+        /// <summary>
+        /// Checks if an extension is supported in the current environment.
+        /// </summary>
+        /// <param name="name">The name of the extension</param>
+        /// <returns><c>true</c> if and only if the extension is supported</returns>
         public static bool IsSupportedExtension(string name)
             => SupportedExtensions.Contains(name);
 
+        /// <summary>
+        /// Checks if extensions are supported in the current environment.
+        /// </summary>
+        /// <param name="names">The names of the extensions.</param>
+        /// <returns><c>true</c> if and only if all of the extensions are supported.</returns>
         public static bool IsSupportedExtensions(IEnumerable<string> names)
             => names.All((name) => SupportedExtensions.Contains(name));
 
         private static IEnumerable<string> layers;
 
+        /// <summary>
+        /// All of the supported Vulkan instance validation layers in the current environment.
+        /// </summary>
         public static IEnumerable<string> SupportedLayers
         {
             get
@@ -240,7 +362,6 @@ namespace VulkanManaged
                 return layers;
             }
         }
-
 
         #endregion
 

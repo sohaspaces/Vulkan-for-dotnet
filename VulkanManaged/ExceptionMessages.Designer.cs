@@ -61,11 +61,47 @@ namespace VulkanManaged {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t find any device with Vulkan support..
+        /// </summary>
+        internal static string DeviceNotFound {
+            get {
+                return ResourceManager.GetString("DeviceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One of the required (including by the programmer) extensions is not supported..
         /// </summary>
         internal static string ExtensionNotPresent {
             get {
                 return ResourceManager.GetString("ExtensionNotPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given queue family index is invalid..
+        /// </summary>
+        internal static string InvalidQueueFamilyIndex {
+            get {
+                return ResourceManager.GetString("InvalidQueueFamilyIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given queue family or queue index is invalid..
+        /// </summary>
+        internal static string InvalidQueueIndex {
+            get {
+                return ResourceManager.GetString("InvalidQueueIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The QueueInfoMapper function returned an invalid QueueInfo record instance..
+        /// </summary>
+        internal static string InvalidQueueInfo {
+            get {
+                return ResourceManager.GetString("InvalidQueueInfo", resourceCulture);
             }
         }
         

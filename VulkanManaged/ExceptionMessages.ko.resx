@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>Couldn't find any device with Vulkan support.</value>
+    <value>벌칸을 지원하는 장치를 하나도 찾지 못하였습니다.</value>
   </data>
   <data name="ExtensionNotPresent" xml:space="preserve">
-    <value>One of the required (including by the programmer) extensions is not supported.</value>
+    <value>요구된 벌칸 extension 중 하나 이상이 지원되지 않습니다.</value>
   </data>
   <data name="InvalidQueueFamilyIndex" xml:space="preserve">
-    <value>The given queue family index is invalid.</value>
+    <value>주어진 queue family 인덱스가 유효하지 않습니다.</value>
   </data>
   <data name="InvalidQueueIndex" xml:space="preserve">
-    <value>The given queue family or queue index is invalid.</value>
+    <value>주어진 queue family 또는 queue 인덱스가 유효하지 않습니다.</value>
   </data>
   <data name="InvalidQueueInfo" xml:space="preserve">
-    <value>The QueueInfoMapper function returned an invalid QueueInfo record instance.</value>
+    <value>QueueInfoMapper 함수가 유효하지 않은 QueueInfo 인스턴스를 반환하였습니다.</value>
   </data>
   <data name="LayerNotPresent" xml:space="preserve">
-    <value>One of the required (including by the programmer) layers is not supported.</value>
+    <value>요구된 벌칸 validation layer 중 하나 이상이 지원되지 않습니다.</value>
   </data>
 </root>

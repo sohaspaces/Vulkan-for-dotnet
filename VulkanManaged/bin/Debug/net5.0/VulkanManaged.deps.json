@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "VulkanManaged/1.0.0": {
+        "dependencies": {
+          "VulkanForDotnet": "1.1.0"
+        },
+        "runtime": {
+          "VulkanManaged.dll": {}
+        },
+        "resources": {
+          "ko/VulkanManaged.resources.dll": {
+            "locale": "ko"
+          }
+        }
+      },
+      "VulkanForDotnet/1.1.0": {
+        "runtime": {
+          "Vulkan.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VulkanManaged/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VulkanForDotnet/1.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

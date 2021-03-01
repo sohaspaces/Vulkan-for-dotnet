@@ -92,7 +92,6 @@ namespace Vulkan
         {
             if (!WhitelistResult.Contains(result))
                 throw new VulkanException(function, result);
-            Console.WriteLine($"Success!: {function}");
         }
     }
 }
