@@ -5,7 +5,7 @@
   },
   "projects": {
     "E:\\Program\\Vulkan\\VulkanManaged\\VulkanManaged.csproj": {
-      "version": "1.0.0",
+      "version": "1.1.1",
       "restore": {
         "projectUniqueName": "E:\\Program\\Vulkan\\VulkanManaged\\VulkanManaged.csproj",
         "projectName": "VulkanManaged",
@@ -68,7 +68,7 @@
       }
     },
     "E:\\Program\\Vulkan\\Vulkan\\Vulkan.csproj": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "restore": {
         "projectUniqueName": "E:\\Program\\Vulkan\\Vulkan\\Vulkan.csproj",
         "projectName": "VulkanForDotnet",
