@@ -1,0 +1,12 @@
+E:\Program\Vulkan\Xystem.Numerics\bin\Debug\net5.0\Xystem.Numerics.deps.json
+E:\Program\Vulkan\Xystem.Numerics\bin\Debug\net5.0\Xystem.Numerics.dll
+E:\Program\Vulkan\Xystem.Numerics\bin\Debug\net5.0\ref\Xystem.Numerics.dll
+E:\Program\Vulkan\Xystem.Numerics\bin\Debug\net5.0\Xystem.Numerics.pdb
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.GeneratedMSBuildEditorConfig.editorconfig
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.AssemblyInfoInputs.cache
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.AssemblyInfo.cs
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.csproj.CoreCompileInputs.cache
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.dll
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\ref\Xystem.Numerics.dll
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.pdb
+E:\Program\Vulkan\Xystem.Numerics\obj\Debug\net5.0\Xystem.Numerics.csprojAssemblyReference.cache

@@ -79,6 +79,15 @@ namespace VulkanManaged {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The given memory type index is invalid..
+        /// </summary>
+        internal static string InvalidMemoryTypeIndex {
+            get {
+                return ResourceManager.GetString("InvalidMemoryTypeIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The given queue family index is invalid..
         /// </summary>
         internal static string InvalidQueueFamilyIndex {

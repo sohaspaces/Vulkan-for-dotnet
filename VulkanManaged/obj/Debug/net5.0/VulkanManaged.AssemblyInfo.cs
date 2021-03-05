@@ -13,7 +13,8 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("sohaspaces")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyCopyrightAttribute("Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotne" +
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2021 Soha Moon")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotne" +
     "t 5.0+ environment.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]

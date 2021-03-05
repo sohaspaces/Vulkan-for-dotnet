@@ -269,7 +269,7 @@ namespace Vulkan
         [DllImport("vulkan-1")] private static extern VkResult vkGetEventStatus(VkDevice device, VkEvent @event);
         public static void GetEventStatus(VkDevice device, VkEvent @event) => vkGetEventStatus(device, @event).AssertSuccess(nameof(vkGetEventStatus));
         [DllImport("vulkan-1")] private static extern VkResult vkGetFenceStatus(VkDevice device, VkFence fence);
-        public static void GetFenceStatus(VkDevice device, VkFence fence) => vkGetFenceStatus(device, fence).AssertSuccess(nameof(vkGetFenceStatus));
+        public static VkResult GetFenceStatus(VkDevice device, VkFence fence) => vkGetFenceStatus(device, fence);
         [DllImport("vulkan-1")] private static extern void vkGetImageMemoryRequirements(VkDevice device, VkImage image, VkMemoryRequirements* memoryRequirements);
         public static void GetImageMemoryRequirements(VkDevice device, VkImage image, VkMemoryRequirements* memoryRequirements) => vkGetImageMemoryRequirements(device, image, memoryRequirements);
         [DllImport("vulkan-1")] private static extern void vkGetImageMemoryRequirements2(VkDevice device, VkImageMemoryRequirementsInfo2* info, VkMemoryRequirements2* memoryRequirements);

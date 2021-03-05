@@ -11,6 +11,16 @@
         "runtime": {
           "bin/placeholder/VulkanForDotnet.dll": {}
         }
+      },
+      "Xystem.Numerics/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Xystem.Numerics.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Xystem.Numerics.dll": {}
+        }
       }
     }
   },
@@ -19,11 +29,17 @@
       "type": "project",
       "path": "../Vulkan/Vulkan.csproj",
       "msbuildProject": "../Vulkan/Vulkan.csproj"
+    },
+    "Xystem.Numerics/1.0.0": {
+      "type": "project",
+      "path": "../Xystem.Numerics/Xystem.Numerics.csproj",
+      "msbuildProject": "../Xystem.Numerics/Xystem.Numerics.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "VulkanForDotnet >= 1.1.0"
+      "VulkanForDotnet >= 1.1.0",
+      "Xystem.Numerics >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -57,6 +73,9 @@
           "projectReferences": {
             "E:\\Program\\Vulkan\\Vulkan\\Vulkan.csproj": {
               "projectPath": "E:\\Program\\Vulkan\\Vulkan\\Vulkan.csproj"
+            },
+            "E:\\Program\\Vulkan\\Xystem.Numerics\\Xystem.Numerics.csproj": {
+              "projectPath": "E:\\Program\\Vulkan\\Xystem.Numerics\\Xystem.Numerics.csproj"
             }
           }
         }

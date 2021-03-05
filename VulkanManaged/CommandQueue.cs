@@ -21,12 +21,12 @@ namespace VulkanManaged
         /// <summary>
         /// The unmanaged handle of the command queue.
         /// </summary>
-        public VkQueue Handle { get; init; }
+        public VkQueue Handle { get; private init; }
 
         /// <summary>
         /// The logical device by which the <see cref="CommandQueue"/> instance was created.
         /// </summary>
-        public LogicalDevice Device { get; init; }
+        public LogicalDevice Device { get; private init; }
 
         #endregion
 
@@ -39,5 +39,6 @@ namespace VulkanManaged
         }
 
         #endregion
+    
     }
 }

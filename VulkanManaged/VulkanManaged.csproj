@@ -7,7 +7,8 @@
     <RepositoryUrl>https://github.com/sohaspaces/Vulkan-for-dotnet.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <Copyright>Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotnet 5.0+ environment.</Copyright>
+    <Copyright>Copyright (c) 2021 Soha Moon</Copyright>
+    <Description>Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotnet 5.0+ environment.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vulkan\Vulkan.csproj" />
+    <ProjectReference Include="..\Xystem.Numerics\Xystem.Numerics.csproj" />
   </ItemGroup>
 
   <ItemGroup>

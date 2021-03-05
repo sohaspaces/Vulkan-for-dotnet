@@ -18,3 +18,5 @@ E:\Program\Vulkan\VulkanManaged\obj\Debug\net5.0\VulkanManaged.pdb
 E:\Program\Vulkan\VulkanManaged\bin\Debug\net5.0\ko\VulkanManaged.resources.dll
 E:\Program\Vulkan\VulkanManaged\obj\Debug\net5.0\VulkanManaged.ExceptionMessages.ko.resources
 E:\Program\Vulkan\VulkanManaged\obj\Debug\net5.0\ko\VulkanManaged.resources.dll
+E:\Program\Vulkan\VulkanManaged\bin\Debug\net5.0\Xystem.Numerics.dll
+E:\Program\Vulkan\VulkanManaged\bin\Debug\net5.0\Xystem.Numerics.pdb

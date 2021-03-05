@@ -159,7 +159,7 @@ namespace VulkanManaged
         
         #region Instance Members
 
-        private VkInstance api;
+        private VkInstance apiHandle;
 
         /// <summary>
         /// Callback for validation messages.
@@ -184,9 +184,9 @@ namespace VulkanManaged
                 if(physicalDevices == null)
                 {
                     uint count = 0;
-                    Vk.EnumeratePhysicalDevices(api, ref count, null);
+                    Vk.EnumeratePhysicalDevices(apiHandle, ref count, null);
                     var array = new VkPhysicalDevice[count];
-                    Vk.EnumeratePhysicalDevices(api, ref count, array);
+                    Vk.EnumeratePhysicalDevices(apiHandle, ref count, array);
                     physicalDevices = from handle in array
                                       select new PhysicalDevice(handle, this);
                 }
@@ -251,7 +251,7 @@ namespace VulkanManaged
 
             try
             {
-                Vk.CreateInstance(ref apiInfo, null, out api);
+                Vk.CreateInstance(ref apiInfo, null, out apiHandle);
             }
             catch(VulkanException exception)
             {
@@ -287,7 +287,7 @@ namespace VulkanManaged
                     foreach(var disposal in disposables)
                         disposal.Dispose();
                 }
-                Vk.DestroyInstance(api, (VkAllocationCallbacks[])null);
+                Vk.DestroyInstance(apiHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
             }
         }

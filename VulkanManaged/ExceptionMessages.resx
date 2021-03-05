@@ -123,6 +123,9 @@
   <data name="ExtensionNotPresent" xml:space="preserve">
     <value>One of the required (including by the programmer) extensions is not supported.</value>
   </data>
+  <data name="InvalidMemoryTypeIndex" xml:space="preserve">
+    <value>The given memory type index is invalid.</value>
+  </data>
   <data name="InvalidQueueFamilyIndex" xml:space="preserve">
     <value>The given queue family index is invalid.</value>
   </data>

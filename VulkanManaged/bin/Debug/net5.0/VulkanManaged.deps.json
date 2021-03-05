@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "VulkanManaged/1.0.0": {
         "dependencies": {
-          "VulkanForDotnet": "1.1.0"
+          "VulkanForDotnet": "1.1.0",
+          "Xystem.Numerics": "1.0.0"
         },
         "runtime": {
           "VulkanManaged.dll": {}
@@ -23,6 +24,11 @@
         "runtime": {
           "Vulkan.dll": {}
         }
+      },
+      "Xystem.Numerics/1.0.0": {
+        "runtime": {
+          "Xystem.Numerics.dll": {}
+        }
       }
     }
   },
@@ -33,6 +39,11 @@
       "sha512": ""
     },
     "VulkanForDotnet/1.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Xystem.Numerics/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

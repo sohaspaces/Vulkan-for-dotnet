@@ -123,6 +123,9 @@
   <data name="ExtensionNotPresent" xml:space="preserve">
     <value>요구된 벌칸 extension 중 하나 이상이 지원되지 않습니다.</value>
   </data>
+  <data name="InvalidMemoryTypeIndex" xml:space="preserve">
+    <value>주어진 memory type 인덱스가 유효하지 않습니다.</value>
+  </data>
   <data name="InvalidQueueFamilyIndex" xml:space="preserve">
     <value>주어진 queue family 인덱스가 유효하지 않습니다.</value>
   </data>

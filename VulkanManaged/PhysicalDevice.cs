@@ -21,12 +21,12 @@ namespace VulkanManaged
         /// <summary>
         /// The unmanaged handle of the physical device.
         /// </summary>
-        public VkPhysicalDevice Handle { get; init; }
+        public VkPhysicalDevice DeviceHandle { get; private init; }
 
         /// <summary>
         /// The api instance by which the <see cref="PhysicalDevice"/> instance was created.
         /// </summary>
-        public VulkanApi Api { get; init; }
+        public VulkanApi Api { get; private init; }
 
         #region Property Related
 
@@ -41,7 +41,7 @@ namespace VulkanManaged
             {
                 if(properties == null)
                 {
-                    Vk.GetPhysicalDeviceProperties(Handle, out var data);
+                    Vk.GetPhysicalDeviceProperties(DeviceHandle, out var data);
                     properties = data;
                 }
                 return (VkPhysicalDeviceProperties)properties;
@@ -122,7 +122,7 @@ namespace VulkanManaged
             {
                 if (features == null)
                 {
-                    Vk.GetPhysicalDeviceFeatures(Handle, out var data);
+                    Vk.GetPhysicalDeviceFeatures(DeviceHandle, out var data);
                     features = data;
                 }
                 return (VkPhysicalDeviceFeatures)features;
@@ -146,9 +146,9 @@ namespace VulkanManaged
                 if(queueFamilyProperties == null)
                 {
                     uint count = 0;
-                    Vk.GetPhysicalDeviceQueueFamilyProperties(Handle, ref count, null);
+                    Vk.GetPhysicalDeviceQueueFamilyProperties(DeviceHandle, ref count, null);
                     var array = new VkQueueFamilyProperties[count];
-                    Vk.GetPhysicalDeviceQueueFamilyProperties(Handle, ref count, array);
+                    Vk.GetPhysicalDeviceQueueFamilyProperties(DeviceHandle, ref count, array);
                     queueFamilyProperties = array;
                 }
                 return queueFamilyProperties;
@@ -171,9 +171,9 @@ namespace VulkanManaged
                 if (extensions == null)
                 {
                     uint count = 0;
-                    Vk.EnumerateDeviceExtensionProperties(Handle, null, ref count, null);
+                    Vk.EnumerateDeviceExtensionProperties(DeviceHandle, null, ref count, null);
                     var extensions = new VkExtensionProperties[count];
-                    Vk.EnumerateDeviceExtensionProperties(Handle, null, ref count, extensions);
+                    Vk.EnumerateDeviceExtensionProperties(DeviceHandle, null, ref count, extensions);
                     this.extensions = from property in extensions
                                            select (string)property.ExtensionName;
                 }
@@ -210,9 +210,9 @@ namespace VulkanManaged
                 if (layers == null)
                 {
                     uint count = 0;
-                    Vk.EnumerateDeviceLayerProperties(Handle, ref count, null);
+                    Vk.EnumerateDeviceLayerProperties(DeviceHandle, ref count, null);
                     var extensions = new VkLayerProperties[count];
-                    Vk.EnumerateDeviceLayerProperties(Handle, ref count, extensions);
+                    Vk.EnumerateDeviceLayerProperties(DeviceHandle, ref count, extensions);
                     this.layers = from property in extensions
                                        select (string)property.LayerName;
                 }
@@ -240,13 +240,74 @@ namespace VulkanManaged
 
         #endregion
 
+        #region Memory Related
+
+        private VkPhysicalDeviceMemoryProperties? memoryProperties;
+
+        /// <summary>
+        /// The properties about all of the memory types in this device.
+        /// The reason for they being in array is the indices of the types must be preserved.
+        /// </summary>
+        public VkPhysicalDeviceMemoryProperties MemoryProperties
+        {
+            get
+            {
+                if (memoryProperties == null)
+                {
+                    Vk.GetPhysicalDeviceMemoryProperties(DeviceHandle, out var properties);
+                    memoryProperties = properties;
+                }
+                return (VkPhysicalDeviceMemoryProperties)memoryProperties;
+            }
+        }
+
+        private IEnumerable<uint> memoryTypeIndices;
+
+        public IEnumerable<uint> MemoryTypeIndices
+            => memoryTypeIndices ?? 
+            (
+                memoryTypeIndices = from index in Enumerable.Range(0, (int)MemoryProperties.MemoryTypeCount)
+                                    select (uint)index
+            );
+
+        private IDictionary<uint, VkMemoryType> memoryTypes;
+
+        private IDictionary<uint, VkMemoryType> MemoryTypes
+        {
+            get
+            {
+                if(memoryTypes == null)
+                {
+                    lock(memoryTypes)
+                    {
+                        memoryTypes = new Dictionary<uint, VkMemoryType>();
+                        var count = MemoryProperties.MemoryTypeCount;
+                        var pointer = (Span<VkMemoryType>)MemoryProperties.MemoryTypes;
+                        for (uint i = 0; i < count; i++) 
+                            unsafe
+                            {
+                                MemoryTypes.Add(i, pointer[(int)i]);
+                            }
+                    }
+                }
+                return memoryTypes;
+            }
+        }
+
+        public VkMemoryType GetMemoryType(uint index)
+            => MemoryTypes.TryGetValue(index, out var value)
+            ? value
+            : throw new ArgumentException(ExceptionMessages.InvalidMemoryTypeIndex, nameof(index));
+
+        #endregion
+
         #endregion
 
         #region Constructors
 
         internal PhysicalDevice(VkPhysicalDevice handle, VulkanApi api)
         {
-            Handle = handle;
+            DeviceHandle = handle;
             Api = api;
         }
 

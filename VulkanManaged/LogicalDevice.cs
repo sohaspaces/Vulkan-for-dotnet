@@ -105,7 +105,9 @@ namespace VulkanManaged
 
         #region Instance Members
 
-        private VkDevice deviceHandle;
+        public VkDevice DeviceHandle { get; private init; }
+
+        public PhysicalDevice PhysicalDevice { get; private init; }
 
         private Dictionary<uint, VkQueueFamilyProperties> familyProperties;
         private IEnumerable<uint> familyIndices;
@@ -190,11 +192,13 @@ namespace VulkanManaged
             var key = (familyIndex, queueIndex);
             if (!queues.ContainsKey(key))
             {
-                Vk.GetDeviceQueue(deviceHandle, familyIndex, queueIndex, out var handle);
+                Vk.GetDeviceQueue(DeviceHandle, familyIndex, queueIndex, out var handle);
                 queues.Add(key, new CommandQueue(handle, this));
             }
             return queues[key];
         }
+        
+
 
         #endregion
 
@@ -266,9 +270,13 @@ namespace VulkanManaged
 
             familyCount = queueCount;
 
-            Vk.CreateDevice(info.PhysicalDevice.Handle, ref createInfo, null, out deviceHandle);
+            Vk.CreateDevice(info.PhysicalDevice.DeviceHandle, ref createInfo, null, out var handle);
 
             info.PhysicalDevice.Api.AddPreviousDisposable(this);
+
+            DeviceHandle = handle;
+
+            PhysicalDevice = info.PhysicalDevice;
         }
 
         #endregion
@@ -291,7 +299,7 @@ namespace VulkanManaged
                     foreach(var disposal in disposables)
                         disposal.Dispose();
                 }
-                Vk.DestroyDevice(deviceHandle, (VkAllocationCallbacks[])null);
+                Vk.DestroyDevice(DeviceHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
             }
         }

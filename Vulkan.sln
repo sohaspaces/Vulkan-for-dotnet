@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VulkanPlayframe", "VulkanPlayframe\VulkanPlayframe.csproj", "{2A8EF0E6-4318-4C29-BEFA-F68E5944892C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VulkanManaged", "VulkanManaged\VulkanManaged.csproj", "{CC067EC3-9338-453D-957D-C4C4F53C4631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VulkanManaged", "VulkanManaged\VulkanManaged.csproj", "{CC067EC3-9338-453D-957D-C4C4F53C4631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xystem.Numerics", "Xystem.Numerics\Xystem.Numerics.csproj", "{F859C281-C90D-4852-9173-9E749D291108}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,10 @@ Global
 		{CC067EC3-9338-453D-957D-C4C4F53C4631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC067EC3-9338-453D-957D-C4C4F53C4631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC067EC3-9338-453D-957D-C4C4F53C4631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F859C281-C90D-4852-9173-9E749D291108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F859C281-C90D-4852-9173-9E749D291108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F859C281-C90D-4852-9173-9E749D291108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F859C281-C90D-4852-9173-9E749D291108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
