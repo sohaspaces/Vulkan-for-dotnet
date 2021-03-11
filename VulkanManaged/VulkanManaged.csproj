@@ -10,6 +10,7 @@
     <Copyright>Copyright (c) 2021 Soha Moon</Copyright>
     <Description>Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotnet 5.0+ environment.</Description>
     <Version>1.1.1</Version>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

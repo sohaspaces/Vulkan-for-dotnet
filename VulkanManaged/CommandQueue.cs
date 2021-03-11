@@ -28,14 +28,19 @@ namespace VulkanManaged
         /// </summary>
         public LogicalDevice Device { get; private init; }
 
+        public uint FamilyIndex { get; init; }
+        public uint QueueIndex { get; init; }
+
         #endregion
 
         #region Constructors
 
-        internal CommandQueue(VkQueue handle, LogicalDevice device)
+        internal CommandQueue(VkQueue handle, LogicalDevice device, uint family, uint queue)
         {
             Handle = handle;
             Device = device;
+            FamilyIndex = family;
+            QueueIndex = queue;
         }
 
         #endregion

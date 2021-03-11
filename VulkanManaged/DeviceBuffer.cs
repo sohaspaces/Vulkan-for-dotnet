@@ -101,7 +101,6 @@ namespace VulkanManaged
             Vk.CreateBuffer(info.Device.DeviceHandle, ref createInfo, (VkAllocationCallbacks[])null, out var handle);
             BufferHandle = handle;
             Device = info.Device;
-            Device.AddPreviousDisposable(this);
         }
 
         #endregion
@@ -116,6 +115,7 @@ namespace VulkanManaged
             {
                 Vk.DestroyBuffer(Device.DeviceHandle, BufferHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
+                GC.KeepAlive(Device);
             }
         }
 

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>VulkanManaged</id>
+    <version>1.1.1</version>
+    <authors>sohaspaces</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://github.com/sohaspaces/Vulkan-for-dotnet/VulkanManaged</projectUrl>
+    <description>Abstractions for VulkanForDotnet, which is a Khronos Vulkan API wrapper for dotnet 5.0+ environment.</description>
+    <copyright>Copyright (c) 2021 Soha Moon</copyright>
+    <repository type="Git" url="https://github.com/sohaspaces/Vulkan-for-dotnet.git" />
+    <dependencies>
+      <group targetFramework="net5.0">
+        <dependency id="VulkanForDotnet" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="Xystem.Numerics" version="1.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Program\Vulkan\VulkanManaged\bin\Debug\net5.0\ko\VulkanManaged.resources.dll" target="lib\net5.0\ko\VulkanManaged.resources.dll" />
+    <file src="E:\Program\Vulkan\VulkanManaged\bin\Debug\net5.0\VulkanManaged.dll" target="lib\net5.0\VulkanManaged.dll" />
+    <file src="E:\Program\Vulkan\LICENSE.txt" target="LICENSE.txt" />
+  </files>
+</package>

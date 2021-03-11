@@ -59,7 +59,6 @@ namespace VulkanManaged
             Vk.CreateFence(info.Device.DeviceHandle, ref createInfo, null, out var handle);
             FenceHandle = handle;
             Device = info.Device;
-            Device.AddPreviousDisposable(this);
         }
 
         #endregion
@@ -74,6 +73,7 @@ namespace VulkanManaged
             {
                 Vk.DestroyFence(Device.DeviceHandle, FenceHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
+                GC.KeepAlive(Device);
             }
         }
 

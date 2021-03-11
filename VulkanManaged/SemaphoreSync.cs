@@ -56,7 +56,6 @@ namespace VulkanManaged
             Vk.CreateSemaphore(info.Device.DeviceHandle, ref createInfo, null, out var handle);
             SemaphoreHandle = handle;
             Device = info.Device;
-            Device.AddPreviousDisposable(this);
         }
 
         #endregion

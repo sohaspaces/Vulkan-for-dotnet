@@ -15,6 +15,9 @@ namespace VulkanManaged
 
         #region Info
 
+        /// <summary>
+        /// Information for creating a <see cref="DeviceMemory"/> instance.
+        /// </summary>
         public sealed record Info
         {
             public LogicalDevice Device { get; init; }
@@ -58,7 +61,6 @@ namespace VulkanManaged
             Vk.AllocateMemory(info.Device.DeviceHandle, ref allocInfo, (VkAllocationCallbacks[])null, out var handle);
             MemoryHandle = handle;
             Device = info.Device;
-            Device.AddPreviousDisposable(this);
         }
 
         #endregion
@@ -73,6 +75,7 @@ namespace VulkanManaged
             {
                 Vk.FreeMemory(Device.DeviceHandle, MemoryHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
+                GC.KeepAlive(Device);
             }
         }
 

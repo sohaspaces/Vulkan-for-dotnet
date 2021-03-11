@@ -122,5 +122,14 @@ namespace VulkanManaged {
                 return ResourceManager.GetString("LayerNotPresent", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary command buffers are not yet implemented..
+        /// </summary>
+        internal static string SecondaryNotSupported {
+            get {
+                return ResourceManager.GetString("SecondaryNotSupported", resourceCulture);
+            }
+        }
     }
 }

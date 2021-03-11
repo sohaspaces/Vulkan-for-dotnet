@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Xystem.Numerics</id>
+    <version>1.0.0</version>
+    <authors>Xystem.Numerics</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://github.com/sohaspaces/Vulkan-for-dotnet/Xystem.Numerics</projectUrl>
+    <description>Utils about System.Numerics.</description>
+    <copyright>Copyright (c) 2021 Soha Moon</copyright>
+    <repository type="Git" url="https://github.com/sohaspaces/Vulkan-for-dotnet/Xystem.Numerics" />
+    <dependencies>
+      <group targetFramework="net5.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Program\Vulkan\Xystem.Numerics\bin\Debug\net5.0\Xystem.Numerics.dll" target="lib\net5.0\Xystem.Numerics.dll" />
+    <file src="E:\Program\Vulkan\LICENSE.txt" target="LICENSE.txt" />
+  </files>
+</package>

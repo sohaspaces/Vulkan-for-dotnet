@@ -138,4 +138,7 @@
   <data name="LayerNotPresent" xml:space="preserve">
     <value>One of the required (including by the programmer) layers is not supported.</value>
   </data>
+  <data name="SecondaryNotSupported" xml:space="preserve">
+    <value>Secondary command buffers are not yet implemented.</value>
+  </data>
 </root>

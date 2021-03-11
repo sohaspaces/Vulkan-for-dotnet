@@ -138,4 +138,7 @@
   <data name="LayerNotPresent" xml:space="preserve">
     <value>요구된 벌칸 validation layer 중 하나 이상이 지원되지 않습니다.</value>
   </data>
+  <data name="SecondaryNotSupported" xml:space="preserve">
+    <value>Secondary command buffer는 아직 구현되지 않았습니다.</value>
+  </data>
 </root>

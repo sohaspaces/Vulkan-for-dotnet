@@ -17,7 +17,7 @@ namespace VulkanManaged
         #region Info
 
         /// <summary>
-        /// Information for creating a <see cref="DeviceBuffer"/> instance.
+        /// Information for creating a <see cref="DeviceImage"/> instance.
         /// </summary>
         public sealed record Info
         {
@@ -208,7 +208,6 @@ namespace VulkanManaged
             Vk.CreateImage(info.Device.DeviceHandle, ref createInfo, (VkAllocationCallbacks[])null, out var handle);
             ImageHandle = handle;
             Device = info.Device;
-            Device.AddPreviousDisposable(this);
         }
 
         #endregion
@@ -223,6 +222,7 @@ namespace VulkanManaged
             {
                 Vk.DestroyImage(Device.DeviceHandle, ImageHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
+                GC.KeepAlive(Device);
             }
         }
 

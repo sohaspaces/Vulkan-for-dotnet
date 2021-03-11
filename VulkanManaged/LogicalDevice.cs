@@ -193,12 +193,18 @@ namespace VulkanManaged
             if (!queues.ContainsKey(key))
             {
                 Vk.GetDeviceQueue(DeviceHandle, familyIndex, queueIndex, out var handle);
-                queues.Add(key, new CommandQueue(handle, this));
+                queues.Add(key, new CommandQueue(handle, this, familyIndex, queueIndex));
             }
             return queues[key];
         }
-        
 
+        /// <summary>
+        /// All of the command queues existing in the device.
+        /// </summary>
+        public IEnumerable<CommandQueue> Queues =>
+            from family in QueueFamilyIndices
+            from queue in GetQueueIndices(family)
+            select GetQueue(family, queue);
 
         #endregion
 
@@ -272,8 +278,6 @@ namespace VulkanManaged
 
             Vk.CreateDevice(info.PhysicalDevice.DeviceHandle, ref createInfo, null, out var handle);
 
-            info.PhysicalDevice.Api.AddPreviousDisposable(this);
-
             DeviceHandle = handle;
 
             PhysicalDevice = info.PhysicalDevice;
@@ -285,22 +289,13 @@ namespace VulkanManaged
 
         private bool disposedValue;
 
-        private List<IDisposable> disposables = new List<IDisposable>();
-
-        public void AddPreviousDisposable(IDisposable x)
-            => disposables.Add(x);
-
         private void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
-                if(disposing)
-                {
-                    foreach(var disposal in disposables)
-                        disposal.Dispose();
-                }
                 Vk.DestroyDevice(DeviceHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
+                GC.KeepAlive(PhysicalDevice.Api);
             }
         }
 

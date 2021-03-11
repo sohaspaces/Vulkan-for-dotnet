@@ -271,22 +271,12 @@ namespace VulkanManaged
 
         #region Destructors
 
-        private List<IDisposable> disposables = new List<IDisposable>();
-
-        public void AddPreviousDisposable(IDisposable x)
-            => disposables.Add(x);
-
         private bool disposedValue;
 
         private void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
-                if(disposing)
-                {
-                    foreach(var disposal in disposables)
-                        disposal.Dispose();
-                }
                 Vk.DestroyInstance(apiHandle, (VkAllocationCallbacks[])null);
                 disposedValue = true;
             }
